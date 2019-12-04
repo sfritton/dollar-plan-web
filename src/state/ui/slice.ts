@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = { loading: false, editing: false };
+const initialState = { editing: false };
 export const name = "ui" as const;
 
 const uiSlice = createSlice({
@@ -10,10 +10,6 @@ const uiSlice = createSlice({
     setEditing: (state, action: PayloadAction<boolean>) => ({
       ...state,
       editing: action.payload
-    }),
-    setLoading: (state, action: PayloadAction<boolean>) => ({
-      ...state,
-      loading: action.payload
     })
   }
 });
