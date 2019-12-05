@@ -3,6 +3,7 @@ import { Provider } from "react-redux";
 import store from "./state/store";
 import logo from "./logo.svg";
 import "./App.css";
+import GetBudgetsButton from "./containers/GetBudgetsButton";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
+          <GetBudgetsButton />
           <a
             className="App-link"
             href="https://reactjs.org"

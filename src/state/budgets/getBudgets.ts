@@ -15,7 +15,7 @@ function getBudgets(): AppThunk {
 
       dispatch(slice.actions.addBudgetsSuccess(budgetMap));
     } catch (error) {
-      dispatch(slice.actions.addBudgetsFailure(error));
+      dispatch(slice.actions.addBudgetsFailure(error.message));
     }
   };
 }

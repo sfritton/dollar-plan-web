@@ -29,7 +29,7 @@ const budgetsSlice = createSlice({
       data: action.payload,
       status: Status.SUCCESS
     }),
-    addBudgetsFailure: (state, action: PayloadAction<Error>) => ({
+    addBudgetsFailure: (state, action: PayloadAction<string>) => ({
       ...state,
       error: action.payload,
       status: Status.FAILURE

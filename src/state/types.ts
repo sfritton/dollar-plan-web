@@ -16,5 +16,5 @@ export enum Status {
 export interface AsyncState<T> {
   status: Status;
   data: T;
-  error?: Error;
+  error?: string;
 }
