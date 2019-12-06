@@ -1,0 +1,53 @@
+.welcome {
+  height: 100vh;
+  background: var(--color-primary-dark);
+  text-align: center;
+  overflow: hidden;
+  color: var(--color-primary-dark-text);
+  font-weight: bold;
+  padding: 0 50px;
+}
+
+.welcome > h1 {
+  font-size: 64px;
+  margin-top: 40vh;
+  margin-bottom: 30px;
+}
+
+.welcome--fade-in {
+  animation: fadeIn var(--anim-duration-long) 1s ease;
+  animation-fill-mode: both;
+}
+
+/* .welcome h2 {
+  text-align: left;
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 600px;
+} */
+
+.welcome--wide-btn {
+  margin: 15px auto;
+  width: 300px;
+  display: block;
+}
+
+h1.welcome--title {
+  margin-top: 20px;
+  animation: up var(--anim-duration-long) ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes up {
+  from {
+    margin-top: 40vh;
+  }
+}
