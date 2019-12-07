@@ -1,5 +1,6 @@
 import React from "react";
 import "./button.css";
+import classNames from "../util/classNames";
 
 interface Props {
   onClick: AnyFunction;
@@ -14,7 +15,7 @@ const ButtonBase: React.FC<Props> = ({
   className
 }) => (
   <button
-    className={`btn ${className} ${small ? "btn-small" : ""}`}
+    className={classNames({ "btn-small": small }, "btn", className)}
     onClick={onClick}
   >
     {children}
