@@ -8,7 +8,7 @@
 }
 
 .input::placeholder {
-  color: var(--color-primary-light);
+  color: var(--color-primary-lighter);
 }
 
 .input:hover {
