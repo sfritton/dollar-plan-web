@@ -9,16 +9,9 @@
 }
 
 .welcome--fade-in {
-  animation: fadeIn var(--anim-duration-long) 1s ease;
+  animation: fadeIn var(--anim-duration-long) 600ms ease;
   animation-fill-mode: both;
 }
-
-/* .welcome h2 {
-  text-align: left;
-  display: block;
-  margin: 0 auto 20px;
-  max-width: 600px;
-} */
 
 .welcome--wide-btn {
   margin: var(--space-x3) auto;

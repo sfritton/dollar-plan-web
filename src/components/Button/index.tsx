@@ -1,6 +1,6 @@
 import React from "react";
 import "./button.css";
-import classNames from "../util/classNames";
+import classNames from "../../util/classNames";
 
 interface Props {
   onClick: AnyFunction;

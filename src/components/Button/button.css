@@ -5,7 +5,7 @@
   padding: var(--space-x2) var(--space-x3);
   border-radius: var(--space-x1);
   font-size: 16px;
-  transition: transform 600ms ease;
+  transition: transform var(--anim-duration-long) ease;
 }
 
 .btn:hover {
