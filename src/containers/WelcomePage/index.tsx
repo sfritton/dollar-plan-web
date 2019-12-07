@@ -9,6 +9,7 @@ import {
 } from "../../state/types";
 import { getHasBudgets, getBudgetStatus } from "../../state/budgets/selectors";
 import "./welcome-page.css";
+import { ButtonPrimary, ButtonOutline } from "../../components/Button";
 
 type StateProps = MappedStateProps<typeof mapStateToProps>;
 type DispatchProps = MappedDispatchProps<typeof mapDispatchToProps>;
@@ -29,13 +30,15 @@ function WelcomePage(props: StateProps & DispatchProps) {
         <div className="welcome--fade-in">
           {hasBudgets && (
             <>
-              <button className="welcome--wide-btn">Choose a budget</button>
+              <ButtonPrimary className="welcome--wide-btn" onClick={() => {}}>
+                Choose a budget
+              </ButtonPrimary>
               <div>or</div>
             </>
           )}
-          <button className="welcome--wide-btn">
+          <ButtonOutline className="welcome--wide-btn" onClick={() => {}}>
             Create a new {hasBudgets ? "one" : "budget"}
-          </button>
+          </ButtonOutline>
         </div>
       )}
     </div>

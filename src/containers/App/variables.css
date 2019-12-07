@@ -40,6 +40,7 @@
   --space-x3: calc(var(--space-x1) * 3);
   --space-x4: calc(var(--space-x1) * 4);
   --space-x5: calc(var(--space-x1) * 5);
+  --space-x6: calc(var(--space-x1) * 6);
 
   --anim-duration-short: 100ms;
   --anim-duration-default: 300ms;

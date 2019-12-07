@@ -5,13 +5,7 @@
   overflow: hidden;
   color: var(--color-primary-dark-text);
   font-weight: bold;
-  padding: 0 50px;
-}
-
-.welcome > h1 {
-  font-size: 64px;
-  margin-top: 40vh;
-  margin-bottom: 30px;
+  padding: 0 var(--space-x6);
 }
 
 .welcome--fade-in {
@@ -27,13 +21,16 @@
 } */
 
 .welcome--wide-btn {
-  margin: 15px auto;
+  margin: var(--space-x3) auto;
   width: 300px;
+  max-width: 100%;
   display: block;
 }
 
-h1.welcome--title {
-  margin-top: 20px;
+.welcome--title {
+  margin-top: var(--space-x6);
+  margin-bottom: var(--space-x6);
+  font-size: calc(var(--space-x1) * 14);
   animation: up var(--anim-duration-long) ease;
 }
 
