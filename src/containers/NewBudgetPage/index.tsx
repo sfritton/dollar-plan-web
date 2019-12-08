@@ -1,8 +1,17 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getBudgets, selectHasBudgets } from "../../state/budgets/selectors";
-import { AppState, MappedStateProps } from "../../state/types";
-// import "./new-budget-page.less";
+import getBudgetsAction from "../../state/budgets/getBudgets";
+import {
+  getBudgetStatus,
+  getBudgets,
+  selectHasBudgets
+} from "../../state/budgets/selectors";
+import {
+  AppState,
+  MappedStateProps,
+  Status,
+  MappedDispatchProps
+} from "../../state/types";
 
 // import { createNewBudget, getBudget } from "Redux/budgets/actions";
 // import { setBudgetPage, setEditing } from "Redux/ui/actions";
@@ -21,9 +30,15 @@ import { AppState, MappedStateProps } from "../../state/types";
 // );
 
 type StateProps = MappedStateProps<typeof mapStateToProps>;
+type DispatchProps = MappedDispatchProps<typeof mapDispatchToProps>;
 
-function NewBudgetPage(props: StateProps) {
-  const { budgets, hasBudgets } = props;
+function NewBudgetPage(props: StateProps & DispatchProps) {
+  const { status, getBudgets } = props;
+
+  useEffect(() => {
+    if (status === Status.INIT) getBudgets();
+  }, [status, getBudgets]);
+
   return <div>Select a month and year</div>;
 }
 
@@ -117,8 +132,13 @@ function NewBudgetPage(props: StateProps) {
 // }
 
 const mapStateToProps = (state: AppState) => ({
+  status: getBudgetStatus(state),
   budgets: getBudgets(state),
   hasBudgets: selectHasBudgets(state)
 });
 
-export default connect(mapStateToProps)(NewBudgetPage);
+const mapDispatchToProps = {
+  getBudgets: getBudgetsAction
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewBudgetPage);

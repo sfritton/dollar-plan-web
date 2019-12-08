@@ -12,7 +12,7 @@ import {
   getBudgetStatus
 } from "../../state/budgets/selectors";
 import "./welcome-page.css";
-import { ButtonPrimary, ButtonOutline } from "../../components/Button";
+import { ButtonPrimary } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";
 import { LinkOutline } from "../../components/Button/Link";
 
