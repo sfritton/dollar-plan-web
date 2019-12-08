@@ -14,6 +14,7 @@ import {
 import "./welcome-page.css";
 import { ButtonPrimary, ButtonOutline } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";
+import { LinkOutline } from "../../components/Button/Link";
 
 type StateProps = MappedStateProps<typeof mapStateToProps>;
 type DispatchProps = MappedDispatchProps<typeof mapDispatchToProps>;
@@ -47,9 +48,9 @@ function WelcomePage(props: StateProps & DispatchProps) {
                 <div>or</div>
               </>
             )}
-            <ButtonOutline className="welcome--wide-btn" onClick={() => {}}>
+            <LinkOutline className="welcome--wide-btn" to="/new-budget">
               Create a new {hasBudgets ? "one" : "budget"}
-            </ButtonOutline>
+            </LinkOutline>
           </div>
         )
       )}

@@ -1,4 +1,6 @@
 .btn {
+  font-weight: normal;
+  text-decoration: none;
   background: var(--color-secondary);
   color: var(--color-secondary-text);
   border: none;
