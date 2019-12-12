@@ -6,12 +6,16 @@ import "./variables.css";
 import "./main.css";
 import WelcomePage from "../WelcomePage";
 import NewBudgetPage from "../NewBudgetPage";
+import BudgetPage from "../BudgetPage";
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <Switch>
+          <Route path="/budget/:budgetId">
+            <BudgetPage />
+          </Route>
           <Route path="/new-budget">
             <NewBudgetPage />
           </Route>

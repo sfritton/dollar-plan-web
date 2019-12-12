@@ -1,0 +1,23 @@
+.header {
+  background: var(--color-primary-dark);
+  color: var(--color-primary-dark-text);
+  padding: var(--space-x3);
+}
+
+.header--title {
+  font-size: 24px;
+}
+
+.header--subheader {
+  padding: var(--space-x2) var(--space-x3);
+  background: var(--color-primary-light);
+  color: var(--color-primary-light-text);
+  box-shadow: 0 var(--space-x1) var(--space-x2) var(--color-shadow);
+  display: flex;
+  justify-content: space-between;
+}
+
+.header--subheader--unbalanced {
+  background: var(--color-danger-dark);
+  color: var(--color-danger-dark-text);
+}

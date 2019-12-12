@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Budget } from "../../services/types";
 import { AsyncState, Status } from "../types";
 
-interface BudgetWithMetadata extends Budget.Budget {
+export interface BudgetWithMetadata extends Budget.Budget {
   isLoaded: boolean;
   groupIds?: number[];
 }
 
-type BudgetState = AsyncState<Record<string, BudgetWithMetadata>>;
+type BudgetState = AsyncState<Dictionary<string, BudgetWithMetadata>>;
 
 const initialState: BudgetState = { status: Status.INIT, data: {} };
 

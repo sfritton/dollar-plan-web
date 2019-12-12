@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { getBudgets } from "../../state/budgets/selectors";
-import { AppState, MappedStateProps } from "../../state/types";
-import { ButtonOutline } from "../../components/Button";
 import { getMonthName } from "../../util/date";
 import Input from "../../components/Input";
 import "./budget-picker.css";
+import { LinkOutline } from "../../components/Button/Link";
+import { useBudgets } from "../../state/budgets/hooks";
 
 const matchesSearchTerm = (name: string, searchTerm: string) => {
   if (searchTerm === "") return true;
@@ -15,10 +13,8 @@ const matchesSearchTerm = (name: string, searchTerm: string) => {
   return searchRegex.test(name.toLowerCase());
 };
 
-type StateProps = MappedStateProps<typeof mapStateToProps>;
-
-function BudgetPicker(props: StateProps) {
-  const { budgets } = props;
+function BudgetPicker() {
+  const { budgets } = useBudgets();
   const [searchTerm, setSearchTerm] = useState("");
 
   return (
@@ -39,13 +35,13 @@ function BudgetPicker(props: StateProps) {
 
           return [
             ...acc,
-            <ButtonOutline
+            <LinkOutline
               key={id}
               className="budget-picker--budget-btn"
-              onClick={() => {}}
+              to={`/budget/${id}`}
             >
               {name}
-            </ButtonOutline>
+            </LinkOutline>
           ];
         }, [])}
       </div>
@@ -53,8 +49,4 @@ function BudgetPicker(props: StateProps) {
   );
 }
 
-const mapStateToProps = (state: AppState) => ({
-  budgets: getBudgets(state)
-});
-
-export default connect(mapStateToProps)(BudgetPicker);
+export default BudgetPicker;
