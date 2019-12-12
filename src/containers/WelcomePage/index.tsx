@@ -1,33 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import getBudgetsAction from "../../state/budgets/getBudgets";
-import {
-  MappedDispatchProps,
-  AppState,
-  MappedStateProps,
-  Status
-} from "../../state/types";
-import {
-  selectHasBudgets,
-  getBudgetStatus
-} from "../../state/budgets/selectors";
+import React, { useState } from "react";
+import { Status } from "../../state/types";
+import { useBudgets } from "../../state/budgets/hooks";
 import "./welcome-page.css";
 import { ButtonPrimary } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";
 import { LinkOutline } from "../../components/Button/Link";
 
-type StateProps = MappedStateProps<typeof mapStateToProps>;
-type DispatchProps = MappedDispatchProps<typeof mapDispatchToProps>;
-
-function WelcomePage(props: StateProps & DispatchProps) {
-  const { status, getBudgets, hasBudgets } = props;
+function WelcomePage() {
   const [isChoosingBudget, setIsChoosingBudget] = useState(false);
+  const { status, budgets } = useBudgets();
 
-  useEffect(() => {
-    if (status !== Status.INIT) return;
-
-    getBudgets();
-  }, [status, getBudgets]);
+  const hasBudgets = budgets.length > 0;
 
   return (
     <div className="welcome">
@@ -58,13 +41,4 @@ function WelcomePage(props: StateProps & DispatchProps) {
   );
 }
 
-const mapStateToProps = (state: AppState) => ({
-  status: getBudgetStatus(state),
-  hasBudgets: selectHasBudgets(state)
-});
-
-const mapDispatchToProps = {
-  getBudgets: getBudgetsAction
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default WelcomePage;
