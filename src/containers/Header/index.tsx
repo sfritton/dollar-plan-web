@@ -17,14 +17,14 @@ function Header(props: Props) {
 
   const budget = useSelector(getBudgetById(budgetId));
 
-  if (!budget) return null; // TODO: handle loading
-
   return (
     <>
       <div className="header">
-        <h1 className="header--title">
-          {getMonthName(budget.month)} {budget.year}
-        </h1>
+        {budget && (
+          <h1 className="header--title">
+            {getMonthName(budget.month)} {budget.year}
+          </h1>
+        )}
       </div>
       <SubHeader budgetId={budgetId} />
     </>

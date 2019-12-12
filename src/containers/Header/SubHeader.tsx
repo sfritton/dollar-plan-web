@@ -28,7 +28,7 @@ function SubHeader(props: Props) {
   const budget = useSelector(getBudgetById(budgetId));
   const unbalanced = false;
 
-  if (!budget) return null; // TODO: handle loading
+  if (!budget) return <div className="header--subheader" />;
 
   return (
     <div
