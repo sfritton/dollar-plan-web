@@ -13,9 +13,8 @@ export enum Status {
   FAILURE = "FAILURE"
 }
 
-export interface AsyncState<T> {
+export interface AsyncState {
   status: Status;
-  data: T;
   error?: string;
 }
 

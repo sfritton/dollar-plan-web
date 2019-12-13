@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Status } from "../../state/types";
-import { useBudgets } from "../../state/budgets/hooks";
+import { useBudgets } from "../../state/budgets/selectors";
 import "./welcome-page.css";
 import { ButtonPrimary } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";

@@ -3,7 +3,7 @@ import { getMonthName } from "../../util/date";
 import Input from "../../components/Input";
 import "./budget-picker.css";
 import { LinkOutline } from "../../components/Button/Link";
-import { useBudgets } from "../../state/budgets/hooks";
+import { useBudgets } from "../../state/budgets/selectors";
 
 const matchesSearchTerm = (name: string, searchTerm: string) => {
   if (searchTerm === "") return true;

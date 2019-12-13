@@ -1,23 +1,44 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { AppState } from "../types";
 import { BudgetWithMetadata } from "./slice";
+import useCache from "../useCache";
+import fetchBudgets from "./fetchBudgets";
+import { useMemo } from "react";
 
-export const getBudgetStatus = (state: AppState) => state.budgets.status;
+const getStatus = (state: AppState) => state.budgets.status;
 
-export const getBudgets = (state: AppState) =>
-  Object.values(state.budgets.data).reduce(
-    (acc: BudgetWithMetadata[], budget) => {
+const getHasBudgets = (state: AppState) => state.budgets.ids.length > 0;
+
+const makeGetBudgetById = (budgetId: number | string) => (state: AppState) =>
+  state.budgets.idMap[budgetId];
+
+const selectBudgets = createSelector(
+  (state: AppState) => state.budgets.ids,
+  (state: AppState) => state.budgets.idMap,
+  (ids, idMap) =>
+    ids.reduce((acc: BudgetWithMetadata[], id) => {
+      const budget = idMap[id];
       if (!budget) return acc;
 
       return [...acc, budget];
-    },
-    []
-  );
-
-export const getBudgetById = (budgetId: string) => (state: AppState) =>
-  state.budgets.data[budgetId];
-
-export const selectHasBudgets = createSelector(
-  getBudgets,
-  budgets => budgets.length > 0
+    }, [])
 );
+
+export function useHasBudgets() {
+  const { status, data } = useCache(getStatus, getHasBudgets, fetchBudgets);
+
+  return { status, hasBudgets: data };
+}
+
+export function useBudgets() {
+  const { status, data } = useCache(getStatus, selectBudgets, fetchBudgets);
+
+  return { status, budgets: data };
+}
+
+export function useBudget(id: string) {
+  const getBudgetById = useMemo(() => makeGetBudgetById(id), [id]);
+  const { status, data } = useCache(getStatus, getBudgetById, fetchBudgets);
+
+  return { status, budget: data };
+}

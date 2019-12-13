@@ -1,23 +1,33 @@
 import GetBudgets from "../../services/GetBudgets";
 import slice from "./slice";
 import arrayToMap from "../../util/arrayToMap";
-import { AppThunk } from "../types";
+import { AppThunk, Status } from "../types";
 
-function getBudgets(): AppThunk {
-  return async dispatch => {
+function fetchBudgets(): AppThunk {
+  return async (dispatch, getState) => {
+    const status = getState().budgets.status;
+
+    // prevent duplicate calls
+    if (status === Status.LOADING) return;
+
     dispatch(slice.actions.addBudgetsPending());
 
     try {
       const budgets = await GetBudgets();
       const budgetMap = arrayToMap(
-        budgets.map(budget => ({ ...budget, isLoaded: false }))
+        budgets.map(budget => ({ ...budget, status: Status.INIT }))
       );
 
-      dispatch(slice.actions.addBudgetsSuccess(budgetMap));
+      dispatch(
+        slice.actions.addBudgetsSuccess({
+          ids: budgets.map(({ id }) => id),
+          idMap: budgetMap
+        })
+      );
     } catch (error) {
       dispatch(slice.actions.addBudgetsFailure(error.message));
     }
   };
 }
 
-export default getBudgets;
+export default fetchBudgets;

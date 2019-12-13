@@ -1,7 +1,5 @@
 import React from "react";
-import { getBudgetById } from "../../state/budgets/selectors";
-import { useSelector } from "react-redux";
-import { useBudgets } from "../../state/budgets/hooks";
+import { useBudget } from "../../state/budgets/selectors";
 import { getMonthName } from "../../util/date";
 import SubHeader from "./SubHeader";
 import "./header.css";
@@ -15,9 +13,7 @@ interface Props {
 function Header(props: Props) {
   const { budgetId } = props;
 
-  useBudgets(); // make sure the budgets slice is populated
-
-  const budget = useSelector(getBudgetById(budgetId));
+  const { budget } = useBudget(budgetId);
 
   return (
     <>
@@ -35,7 +31,7 @@ function Header(props: Props) {
           </>
         )}
       </div>
-      <SubHeader budgetId={budgetId} />
+      <SubHeader budget={budget} />
     </>
   );
 }

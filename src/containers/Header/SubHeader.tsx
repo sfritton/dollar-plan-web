@@ -1,6 +1,4 @@
 import React from "react";
-import { getBudgetById } from "../../state/budgets/selectors";
-import { useSelector } from "react-redux";
 import classNames from "../../util/classNames";
 import { hasMonthStarted, hasMonthEnded, getDaysLeft } from "../../util/date";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
@@ -19,13 +17,12 @@ const getDaysLeftMessage = (budget: BudgetWithMetadata) => {
 };
 
 interface Props {
-  budgetId: string;
+  budget?: BudgetWithMetadata;
 }
 
 function SubHeader(props: Props) {
-  const { budgetId } = props;
+  const { budget } = props;
 
-  const budget = useSelector(getBudgetById(budgetId));
   const unbalanced = false;
 
   if (!budget) return <div className="header--subheader" />;

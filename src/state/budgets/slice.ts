@@ -3,13 +3,16 @@ import { Budget } from "../../services/types";
 import { AsyncState, Status } from "../types";
 
 export interface BudgetWithMetadata extends Budget.Budget {
-  isLoaded: boolean;
+  status: Status;
   groupIds?: number[];
 }
 
-type BudgetState = AsyncState<Dictionary<string, BudgetWithMetadata>>;
+interface BudgetState extends AsyncState {
+  ids: number[];
+  idMap: Dictionary<string, BudgetWithMetadata>;
+}
 
-const initialState: BudgetState = { status: Status.INIT, data: {} };
+const initialState: BudgetState = { status: Status.INIT, ids: [], idMap: {} };
 
 export const name = "budgets" as const;
 
@@ -23,10 +26,13 @@ const budgetsSlice = createSlice({
     }),
     addBudgetsSuccess: (
       state,
-      action: PayloadAction<Record<string, BudgetWithMetadata>>
+      action: PayloadAction<{
+        ids: number[];
+        idMap: Record<string, BudgetWithMetadata>;
+      }>
     ) => ({
       ...state,
-      data: action.payload,
+      ...action.payload,
       status: Status.SUCCESS
     }),
     addBudgetsFailure: (state, action: PayloadAction<string>) => ({

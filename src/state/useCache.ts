@@ -1,9 +1,7 @@
 import { Action } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { Status, AppState, AppThunk } from "../types";
-import { getBudgetStatus, getBudgets } from "./selectors";
-import fetchBudgets from "./fetchBudgets";
+import { Status, AppState, AppThunk } from "./types";
 
 function useCache<T>(
   statusSelector: (state: AppState) => Status,
@@ -14,6 +12,7 @@ function useCache<T>(
   const data = useSelector(dataSelector);
   const dispatch = useDispatch();
 
+  // fetch the data if it hasn't been fetched already
   useEffect(() => {
     if (status === Status.INIT) dispatch(dataFetcher());
   }, [status, dispatch, dataFetcher]);
@@ -21,8 +20,4 @@ function useCache<T>(
   return { status, data };
 }
 
-export function useBudgets() {
-  const { status, data } = useCache(getBudgetStatus, getBudgets, fetchBudgets);
-
-  return { status, budgets: data };
-}
+export default useCache;
