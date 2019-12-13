@@ -1,12 +1,23 @@
 .header {
   background: var(--color-primary-dark);
   color: var(--color-primary-dark-text);
+  display: flex;
   padding: var(--space-x3);
-  min-height: 52px;
+  min-height: 56px;
+  align-items: flex-end;
+}
+
+.header--icon {
+  fill: var(--color-primary-dark-text);
+}
+
+.header--icon--left {
+  margin-right: var(--space-x3);
 }
 
 .header--title {
   font-size: 24px;
+  flex-grow: 1;
 }
 
 .header--subheader {

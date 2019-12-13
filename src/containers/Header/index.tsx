@@ -5,6 +5,8 @@ import { useBudgets } from "../../state/budgets/hooks";
 import { getMonthName } from "../../util/date";
 import SubHeader from "./SubHeader";
 import "./header.css";
+import IconCalendar from "../../icons/IconCalendar";
+import IconAdjust from "../../icons/IconAdjust";
 
 interface Props {
   budgetId: string;
@@ -21,9 +23,16 @@ function Header(props: Props) {
     <>
       <div className="header">
         {budget && (
-          <h1 className="header--title">
-            {getMonthName(budget.month)} {budget.year}
-          </h1>
+          <>
+            <IconCalendar
+              size={32}
+              className="header--icon header--icon--left"
+            />
+            <h1 className="header--title">
+              {getMonthName(budget.month)} {budget.year}
+            </h1>
+            <IconAdjust size={32} className="header--icon" />
+          </>
         )}
       </div>
       <SubHeader budgetId={budgetId} />
