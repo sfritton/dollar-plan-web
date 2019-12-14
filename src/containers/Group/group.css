@@ -1,0 +1,21 @@
+.group {
+  margin-bottom: var(--space-x4);
+}
+
+.group--title {
+  margin: var(--space-x2) 0;
+  min-height: 25px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.group--title-input {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.group--category-cards {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--space-x3) / -2);
+}

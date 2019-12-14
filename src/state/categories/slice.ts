@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Budget } from "../../services/types";
 import budgetsSlice from "../budgets/slice";
 
-const initialState: Dictionary<string, Budget.Category> = {};
+const initialState: Dictionary<string, Budget.CategoryResponse> = {};
 
 export const name = "categories" as const;
 

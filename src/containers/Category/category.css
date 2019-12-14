@@ -1,0 +1,10 @@
+.category-card--heading {
+  display: flex;
+  margin-bottom: var(--space-x3);
+  font-weight: bold;
+}
+
+.category-card--title {
+  flex-grow: 1;
+  margin-right: var(--space-x3);
+}

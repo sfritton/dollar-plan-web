@@ -2,7 +2,7 @@ import React from "react";
 import Input from "../../components/Input";
 import { useSelector } from "react-redux";
 import { getIsEditing } from "../../state/ui/selectors";
-// import "./category-group-heading.less";
+import "./group.css";
 
 interface Props {
   title: string;
