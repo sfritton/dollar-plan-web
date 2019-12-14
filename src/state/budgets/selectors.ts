@@ -8,9 +8,12 @@ import fetchBudget from "./fetchBudget";
 
 const getStatus = (state: AppState) => state.budgets.status;
 
+const makeGetBudgetStatus = (id: string) => (state: AppState) =>
+  (state.budgets.idMap[id] || {}).status;
+
 const getHasBudgets = (state: AppState) => state.budgets.ids.length > 0;
 
-const makeGetBudgetById = (budgetId: number | string) => (state: AppState) =>
+const makeGetBudget = (budgetId: number | string) => (state: AppState) =>
   state.budgets.idMap[budgetId];
 
 const selectBudgets = createSelector(
@@ -38,9 +41,14 @@ export function useBudgets() {
 }
 
 export function useBudget(id: string) {
-  const getBudgetById = useMemo(() => makeGetBudgetById(id), [id]);
+  const getBudgetById = useMemo(() => makeGetBudget(id), [id]);
+  const getBudgetStatusById = useMemo(() => makeGetBudgetStatus(id), [id]);
   const fetchBudgetById = useCallback(() => fetchBudget(id), [id]);
-  const { status, data } = useCache(getStatus, getBudgetById, fetchBudgetById);
+  const { status, data } = useCache(
+    getBudgetStatusById,
+    getBudgetById,
+    fetchBudgetById
+  );
 
   return { status, budget: data };
 }

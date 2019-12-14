@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { Status, AppState, AppThunk } from "./types";
 
 function useCache<T>(
-  statusSelector: (state: AppState) => Status,
+  statusSelector: (state: AppState) => Status | undefined,
   dataSelector: (state: AppState) => T,
   dataFetcher: AnyFunction<Action<string>> | (() => AppThunk)
 ) {
@@ -14,7 +14,7 @@ function useCache<T>(
 
   // fetch the data if it hasn't been fetched already
   useEffect(() => {
-    if (status === Status.INIT) dispatch(dataFetcher());
+    if (!status || status === Status.INIT) dispatch(dataFetcher());
   }, [status, dispatch, dataFetcher]);
 
   return { status, data };
