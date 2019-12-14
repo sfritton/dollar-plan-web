@@ -1,9 +1,10 @@
+import { useMemo, useCallback } from "react";
 import { createSelector } from "@reduxjs/toolkit";
 import { AppState } from "../types";
 import { BudgetWithMetadata } from "./slice";
 import useCache from "../useCache";
 import fetchBudgets from "./fetchBudgets";
-import { useMemo } from "react";
+import fetchBudget from "./fetchBudget";
 
 const getStatus = (state: AppState) => state.budgets.status;
 
@@ -38,7 +39,8 @@ export function useBudgets() {
 
 export function useBudget(id: string) {
   const getBudgetById = useMemo(() => makeGetBudgetById(id), [id]);
-  const { status, data } = useCache(getStatus, getBudgetById, fetchBudgets);
+  const fetchBudgetById = useCallback(() => fetchBudget(id), [id]);
+  const { status, data } = useCache(getStatus, getBudgetById, fetchBudgetById);
 
   return { status, budget: data };
 }

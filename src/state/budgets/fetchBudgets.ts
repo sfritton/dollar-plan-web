@@ -1,4 +1,4 @@
-import GetBudgets from "../../services/GetBudgets";
+import FetchBudgets from "../../services/FetchBudgets";
 import slice from "./slice";
 import arrayToMap from "../../util/arrayToMap";
 import { AppThunk, Status } from "../types";
@@ -13,7 +13,7 @@ function fetchBudgets(): AppThunk {
     dispatch(slice.actions.addBudgetsPending());
 
     try {
-      const budgets = await GetBudgets();
+      const budgets = await FetchBudgets();
       const budgetMap = arrayToMap(
         budgets.map(budget => ({ ...budget, status: Status.INIT }))
       );
