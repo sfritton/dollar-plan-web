@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = { editing: false };
+const initialState = { isEditing: false };
 export const name = "ui" as const;
 
 const uiSlice = createSlice({
@@ -9,7 +9,7 @@ const uiSlice = createSlice({
   reducers: {
     setEditing: (state, action: PayloadAction<boolean>) => ({
       ...state,
-      editing: action.payload
+      isEditing: action.payload
     })
   }
 });
