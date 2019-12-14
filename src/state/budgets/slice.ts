@@ -65,11 +65,13 @@ const budgetsSlice = createSlice({
       }>
     ) => {
       const { budget, id } = action.payload;
+      const { month, year, groupIds } = budget;
 
       state.idMap[id] = {
-        month: budget.month,
-        year: budget.year,
+        month,
+        year,
         id: budget.id,
+        groupIds,
         status: Status.SUCCESS
       };
     },

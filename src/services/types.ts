@@ -6,9 +6,18 @@ export namespace Budget {
   }
 
   export interface BudgetResponse extends Budget {
-    groups: Record<string, Group>;
-    categories: Record<string, Category>;
+    groupIds: number[];
+    groups: Record<string, GroupResponse>;
+    categories: Record<string, CategoryResponse>;
     transactions: Record<string, Transaction>;
+  }
+
+  export interface GroupResponse extends Group {
+    categoryIds: number[];
+  }
+
+  export interface CategoryResponse extends Category {
+    transactionIds: number[];
   }
 
   export interface Group {
@@ -16,6 +25,7 @@ export namespace Budget {
     budget_id: number;
     title: string;
     is_income: boolean;
+    sort: number;
   }
 
   export interface Category {
@@ -25,6 +35,7 @@ export namespace Budget {
     title: string;
     planned_amount: number;
     notes: string;
+    sort: number;
   }
 
   export interface Transaction {
