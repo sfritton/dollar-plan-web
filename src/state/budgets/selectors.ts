@@ -1,10 +1,11 @@
 import { useMemo, useCallback } from "react";
 import { createSelector } from "@reduxjs/toolkit";
-import { AppState } from "../types";
+import { AppState, Status } from "../types";
 import { BudgetWithMetadata } from "./slice";
 import useCache from "../useCache";
 import fetchBudgets from "./fetchBudgets";
 import fetchBudget from "./fetchBudget";
+import { makeGetActualAmount } from '../groups/selectors';
 
 const getStatus = (state: AppState) => state.budgets.status;
 
@@ -27,6 +28,17 @@ const selectBudgets = createSelector(
       return [...acc, budget];
     }, [])
 );
+
+export const makeGetActualBalance = (budgetId: number | string) => (state: AppState) => {
+  const budget = makeGetBudget(budgetId)(state);
+
+  if (!budget || budget.status !== Status.SUCCESS) return undefined;
+
+  const totalIncome = budget.incomeIds.reduce((sum, id) => sum + makeGetActualAmount(id)(state), 0);
+  const totalExpenses = budget.expenseIds.reduce((sum, id) => sum + makeGetActualAmount(id)(state), 0);
+
+  return totalIncome - totalExpenses;
+}
 
 export function useHasBudgets() {
   const { status, data } = useCache(getStatus, getHasBudgets, fetchBudgets);

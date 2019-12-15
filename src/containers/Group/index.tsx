@@ -7,10 +7,11 @@ import Category from "../Category";
 
 interface Props {
   groupId: number;
+  noTitle?: boolean;
 }
 
 function Group(props: Props) {
-  const { groupId } = props;
+  const { groupId, noTitle } = props;
   const getGroup = useMemo(() => makeGetGroup(groupId), [groupId]);
 
   const group = useSelector(getGroup);
@@ -19,7 +20,7 @@ function Group(props: Props) {
 
   return (
     <div className="group">
-      <GroupHeading title={group.title} />
+      {!noTitle && <GroupHeading title={group.title} />}
       <div className="group--category-cards">
         {group.categoryIds.map(id => (
           <Category categoryId={id} isIncome={group.is_income} key={id} />

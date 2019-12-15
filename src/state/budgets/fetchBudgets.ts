@@ -15,7 +15,7 @@ function fetchBudgets(): AppThunk {
     try {
       const budgets = await FetchBudgets();
       const budgetMap = arrayToMap(
-        budgets.map(budget => ({ ...budget, status: Status.INIT }))
+        budgets.map(budget => ({ ...budget, status: Status.INIT as const }))
       );
 
       dispatch(

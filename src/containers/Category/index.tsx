@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import {
   makeGetCategory,
-  makeSelectActualAmount
+  makeGetActualAmount
 } from "../../state/categories/selectors";
 import { useSelector } from "react-redux";
 import Card from "../../components/Card";
@@ -16,12 +16,12 @@ interface Props {
 function Category(props: Props) {
   const { categoryId, isIncome = false } = props;
   const getCategory = useMemo(() => makeGetCategory(categoryId), [categoryId]);
-  const selectActualAmount = useMemo(() => makeSelectActualAmount(categoryId), [
+  const getActualAmount = useMemo(() => makeGetActualAmount(categoryId), [
     categoryId
   ]);
 
   const category = useSelector(getCategory);
-  const actualAmount = useSelector(selectActualAmount);
+  const actualAmount = useSelector(getActualAmount);
 
   if (!category) return null;
 

@@ -2,10 +2,19 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Budget } from "../../services/types";
 import { AsyncState, Status } from "../types";
 
-export type BudgetWithMetadata = Budget.Budget &
-  AsyncState & {
-    groupIds?: number[];
-  };
+export interface BudgetLoaded extends Budget.Budget {
+  error?: string;
+  status: Status.SUCCESS;
+  incomeIds: number[];
+  expenseIds: number[];
+}
+
+export interface BudgetUnloaded extends Budget.Budget {
+  error?: string;
+  status: Status.INIT | Status.LOADING | Status.FAILURE;
+}
+
+export type BudgetWithMetadata = BudgetLoaded | BudgetUnloaded;
 
 interface BudgetState extends AsyncState {
   ids: number[];
@@ -65,13 +74,14 @@ const budgetsSlice = createSlice({
       }>
     ) => {
       const { budget, id } = action.payload;
-      const { month, year, groupIds } = budget;
+      const { month, year, incomeIds, expenseIds } = budget;
 
       state.idMap[id] = {
         month,
         year,
         id: budget.id,
-        groupIds,
+        incomeIds,
+        expenseIds,
         status: Status.SUCCESS
       };
     },
