@@ -1,5 +1,6 @@
-import React from "react";
-import { useBudget } from "../../state/budgets/selectors";
+import React, { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { makeGetBudget } from "../../state/budgets/selectors";
 import { getMonthName } from "../../util/date";
 import SubHeader from "./SubHeader";
 import "./header.css";
@@ -12,8 +13,9 @@ interface Props {
 
 function Header(props: Props) {
   const { budgetId } = props;
+  const getBudget = useMemo(() => makeGetBudget(budgetId), [budgetId]);
 
-  const { budget } = useBudget(budgetId);
+  const budget = useSelector(getBudget);
 
   return (
     <>

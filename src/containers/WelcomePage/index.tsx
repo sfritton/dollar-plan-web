@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { Status } from "../../state/types";
-import { useBudgets } from "../../state/budgets/selectors";
+import { getStatus, selectBudgets } from "../../state/budgets/selectors";
+import fetchBudgets from "../../state/budgets/fetchBudgets";
 import "./welcome-page.css";
 import { ButtonPrimary } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";
@@ -8,7 +10,15 @@ import { LinkOutline } from "../../components/Button/Link";
 
 function WelcomePage() {
   const [isChoosingBudget, setIsChoosingBudget] = useState(false);
-  const { status, budgets } = useBudgets();
+  const status = useSelector(getStatus);
+  const budgets = useSelector(selectBudgets);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (status === Status.INIT) {
+      dispatch(fetchBudgets());
+    }
+  }, [status, dispatch])
 
   const hasBudgets = budgets.length > 0;
 

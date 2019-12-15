@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Status } from "../../state/types";
+import { selectBudgets, getStatus } from "../../state/budgets/selectors";
+import fetchBudgets from "../../state/budgets/fetchBudgets";
 import { getMonthName } from "../../util/date";
 import Input from "../../components/Input";
 import "./budget-picker.css";
 import { LinkOutline } from "../../components/Button/Link";
-import { useBudgets } from "../../state/budgets/selectors";
 
 const matchesSearchTerm = (name: string, searchTerm: string) => {
   if (searchTerm === "") return true;
@@ -14,8 +17,16 @@ const matchesSearchTerm = (name: string, searchTerm: string) => {
 };
 
 function BudgetPicker() {
-  const { budgets } = useBudgets();
+  const status = useSelector(getStatus);
+  const budgets = useSelector(selectBudgets);
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    if (status === Status.INIT) {
+      dispatch(fetchBudgets());
+    }
+  }, [status, dispatch]);
 
   return (
     <>
