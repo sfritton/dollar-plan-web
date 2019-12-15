@@ -22,7 +22,7 @@ function Group(props: Props) {
       <GroupHeading title={group.title} />
       <div className="group--category-cards">
         {group.categoryIds.map(id => (
-          <Category categoryId={id} key={id} />
+          <Category categoryId={id} isIncome={group.is_income} key={id} />
         ))}
       </div>
     </div>

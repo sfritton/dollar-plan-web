@@ -1,10 +1,25 @@
 .category-card--heading {
   display: flex;
-  margin-bottom: var(--space-x3);
+  margin-bottom: var(--space-x2);
   font-weight: bold;
 }
 
 .category-card--title {
   flex-grow: 1;
   margin-right: var(--space-x3);
+}
+
+.category-card--balance {
+  display: flex;
+  font-size: 14px;
+  align-items: center;
+}
+
+.category-card--balance--message {
+  margin-right: var(--space-x3);
+}
+
+.category-card--notes {
+  margin-top: var(--space-x2);
+  font-size: 14px;
 }
