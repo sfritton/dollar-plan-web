@@ -1,6 +1,7 @@
 import React from "react";
 import "./button.css";
 import classNames from "../../util/classNames";
+import { IconProps } from "../../icons/IconBase";
 
 interface Props {
   onClick: AnyFunction;
@@ -27,8 +28,25 @@ export const ButtonPrimary = ButtonBase;
 export const ButtonSecondary: React.FC<Props> = ({
   className,
   ...restProps
-}) => <ButtonBase {...restProps} className={`btn-secondary ${className}`} />;
+}) => <ButtonBase {...restProps} className={classNames({}, "btn-secondary", className)} />;
 
 export const ButtonOutline: React.FC<Props> = ({ className, ...restProps }) => (
-  <ButtonBase {...restProps} className={`btn-outline ${className}`} />
+  <ButtonBase {...restProps} className={classNames({}, "btn-outline", className)} />
+);
+
+interface ButtonFloatingActionProps extends Props {
+  Icon: React.ComponentType<IconProps>;
+  label: string;
+}
+
+export const ButtonFloatingAction = ({
+  className,
+  Icon,
+  label,
+  ...restProps
+}: ButtonFloatingActionProps) => (
+  <ButtonBase {...restProps} className={classNames({}, "btn-floating-action", className)}>
+    <Icon />
+    <div className="btn-floating-action--label">{label}</div>
+  </ButtonBase>
 );

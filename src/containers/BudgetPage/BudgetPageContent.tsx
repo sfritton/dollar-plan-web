@@ -3,6 +3,8 @@ import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
+import { ButtonFloatingAction} from "../../components/Button";
+import IconAdd from "../../icons/IconAdd";
 
 interface Props {
   budget?: BudgetWithMetadata;
@@ -25,6 +27,7 @@ function BudgetPageContent(props: Props) {
         <h2>Expenses</h2>
         {budget.expenseIds.map(id => <Group groupId={id} key={id} />)}
       </section>
+      <ButtonFloatingAction Icon={IconAdd} label="Add transactions" onClick={() => {}} />
     </div>
   );
 }
