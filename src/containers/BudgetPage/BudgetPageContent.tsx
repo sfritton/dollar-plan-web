@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
 import { ButtonFloatingAction} from "../../components/Button";
 import IconAdd from "../../icons/IconAdd";
+import Drawer from "../../components/Drawer";
 
 interface Props {
   budget?: BudgetWithMetadata;
@@ -12,6 +13,7 @@ interface Props {
 
 function BudgetPageContent(props: Props) {
   const { budget } = props;
+  const [isOpen, setIsOpen] = useState(false);
 
   if (!budget || budget.status !== Status.SUCCESS) return null;
 
@@ -27,7 +29,8 @@ function BudgetPageContent(props: Props) {
         <h2>Expenses</h2>
         {budget.expenseIds.map(id => <Group groupId={id} key={id} />)}
       </section>
-      <ButtonFloatingAction Icon={IconAdd} label="Add transactions" onClick={() => {}} />
+      <ButtonFloatingAction Icon={IconAdd} label="Add transactions" onClick={() => setIsOpen(true)} />
+      <Drawer title="Add transactions" isOpen={isOpen} onClose={() => setIsOpen(false)}>Wow, look at this!</Drawer>
     </div>
   );
 }

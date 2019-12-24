@@ -1,16 +1,22 @@
 import React from "react";
 import "./layout.css";
+import classNames from "../../util/classNames";
 
-const Grid: React.FC = ({ children }) => (
-  <div className="layout--grid">{children}</div>
+interface Props {
+  className?: string;
+  innerRef?: React.MutableRefObject<HTMLDivElement | null>;
+}
+
+const Grid: React.FC<Props> = ({ children, className, innerRef }) => (
+  <div ref={innerRef} className={classNames({}, "layout--grid", className)}>{children}</div>
 );
 
-const Header: React.FC = ({ children }) => (
-  <div className="layout--header">{children}</div>
+const Header: React.FC<Props> = ({ children, className, innerRef }) => (
+  <div ref={innerRef} className={classNames({}, "layout--header", className)}>{children}</div>
 );
 
-const Content: React.FC = ({ children }) => (
-  <div className="layout--content">{children}</div>
+const Content: React.FC<Props> = ({ children, className, innerRef }) => (
+  <div ref={innerRef} className={classNames({}, "layout--content", className)}>{children}</div>
 );
 
 const Layout = {
