@@ -3,6 +3,7 @@ import classNames from "../../util/classNames";
 import "./drawer.css";
 import Layout from "../Layout";
 import IconClose from "../../icons/IconClose";
+import { ButtonWithIcon } from "../Button";
 
 function useOnClickOutside<T extends HTMLElement>(handleClick: AnyFunction) {
   const ref = useRef<T>(null);
@@ -48,7 +49,7 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose, title }) => {
       >
         <Layout.Header className="drawer--header">
           {title && <h2>{title}</h2>}
-          <IconClose size={32} className="header--icon" />
+          <ButtonWithIcon Icon={IconClose} label="Cancel" onClick={onClose} />
         </Layout.Header>
         <Layout.Content className="drawer--content">{children}</Layout.Content>
       </Layout.Grid>

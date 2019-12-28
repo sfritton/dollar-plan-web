@@ -6,6 +6,7 @@ import SubHeader from "./SubHeader";
 import "./header.css";
 import IconCalendar from "../../icons/IconCalendar";
 import IconAdjust from "../../icons/IconAdjust";
+import { ButtonWithIcon } from "../../components/Button";
 
 interface Props {
   budgetId: string;
@@ -22,14 +23,20 @@ function Header(props: Props) {
       <div className="header">
         {budget && (
           <>
-            <IconCalendar
-              size={32}
-              className="header--icon header--icon--left"
+            <ButtonWithIcon
+              Icon={IconCalendar}
+              label="Switch budget"
+              onClick={() => {}}
+              className="header--left-btn"
             />
             <h1 className="header--title">
               {getMonthName(budget.month)} {budget.year}
             </h1>
-            <IconAdjust size={32} className="header--icon" />
+            <ButtonWithIcon
+              Icon={IconAdjust}
+              label="Adjust budet"
+              onClick={() => {}}
+            />
           </>
         )}
       </div>

@@ -42,17 +42,32 @@ export const ButtonOutline: React.FC<Props> = ({ className, ...restProps }) => (
   />
 );
 
-interface ButtonFloatingActionProps extends Props {
+interface ButtonWithIconProps extends Props {
   Icon: React.ComponentType<IconProps>;
   label: string;
 }
+
+export const ButtonWithIcon = ({
+  className,
+  Icon,
+  label,
+  ...restProps
+}: ButtonWithIconProps) => (
+  <ButtonBase
+    {...restProps}
+    className={classNames({}, "btn-secondary btn-with-icon", className)}
+  >
+    <Icon size={32} className="btn-with-icon--icon" />
+    <span className="btn-with-icon--label">{label}</span>
+  </ButtonBase>
+);
 
 export const ButtonFloatingAction = ({
   className,
   Icon,
   label,
   ...restProps
-}: ButtonFloatingActionProps) => (
+}: ButtonWithIconProps) => (
   <ButtonBase
     {...restProps}
     className={classNames({}, "btn-floating-action", className)}

@@ -55,6 +55,31 @@
   color: var(--color-secondary-dark);
 }
 
+.btn-with-icon {
+  padding: var(--space-x2);
+  margin: calc(var(--space-x2) * -1);
+  border-radius: 50%;
+}
+
+.btn-with-icon:hover {
+  background: rgba(0, 0, 0, 0.125);
+}
+
+.btn-with-icon--icon {
+  display: block;
+  fill: var(--color-primary-dark-text);
+}
+
+.btn-with-icon--label {
+  position: absolute;
+  display: inline-block;
+  width: 1px;
+  height: 1px;
+  clip: rect(0px, 0px, 0px, 0px);
+  margin: -1px;
+  overflow: hidden;
+}
+
 .btn-floating-action {
   position: fixed;
   display: flex;
