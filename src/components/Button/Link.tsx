@@ -7,12 +7,20 @@ interface Props {
   to: string;
   small?: boolean;
   className?: string;
+  onClick?: AnyFunction;
 }
 
-const LinkBase: React.FC<Props> = ({ children, small, to, className }) => (
+const LinkBase: React.FC<Props> = ({
+  children,
+  small,
+  to,
+  className,
+  onClick
+}) => (
   <Link
     className={classNames({ "btn-small": small }, "btn", className)}
     to={to}
+    onClick={onClick}
   >
     {children}
   </Link>

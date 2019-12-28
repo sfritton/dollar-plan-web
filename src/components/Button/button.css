@@ -27,13 +27,13 @@
   color: var(--color-secondary);
 }
 
-.btn-secondary,
+.btn-secondary:hover,
 .btn-outline:hover {
   background: transparent;
   color: var(--color-secondary-light);
 }
 
-.btn-secondary,
+.btn-secondary:active,
 .btn-outline:active {
   box-shadow: none;
   background: transparent;

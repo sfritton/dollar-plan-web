@@ -8,13 +8,16 @@ export const getStatus = (state: AppState) => state.budgets.status;
 export const makeGetBudgetStatus = (id: string) => (state: AppState) =>
   (state.budgets.idMap[id] || {}).status;
 
-export const getHasBudgets = (state: AppState) => state.budgets.ids.length > 0;
+export const getBudgetIds = (state: AppState) => state.budgets.ids;
+
+export const getHasBudgets = (state: AppState) =>
+  getBudgetIds(state).length > 0;
 
 export const makeGetBudget = (budgetId: number | string) => (state: AppState) =>
   state.budgets.idMap[budgetId];
 
 export const selectBudgets = createSelector(
-  (state: AppState) => state.budgets.ids,
+  getBudgetIds,
   (state: AppState) => state.budgets.idMap,
   (ids, idMap) =>
     ids.reduce((acc: BudgetWithMetadata[], id) => {
