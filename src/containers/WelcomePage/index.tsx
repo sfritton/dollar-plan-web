@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 import { Status } from "../../state/types";
 import { getStatus, selectBudgets } from "../../state/budgets/selectors";
 import fetchBudgets from "../../state/budgets/fetchBudgets";
@@ -18,7 +18,7 @@ function WelcomePage() {
     if (status === Status.INIT) {
       dispatch(fetchBudgets());
     }
-  }, [status, dispatch])
+  }, [status, dispatch]);
 
   const hasBudgets = budgets.length > 0;
 

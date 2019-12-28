@@ -28,10 +28,18 @@ export const ButtonPrimary = ButtonBase;
 export const ButtonSecondary: React.FC<Props> = ({
   className,
   ...restProps
-}) => <ButtonBase {...restProps} className={classNames({}, "btn-secondary", className)} />;
+}) => (
+  <ButtonBase
+    {...restProps}
+    className={classNames({}, "btn-secondary", className)}
+  />
+);
 
 export const ButtonOutline: React.FC<Props> = ({ className, ...restProps }) => (
-  <ButtonBase {...restProps} className={classNames({}, "btn-outline", className)} />
+  <ButtonBase
+    {...restProps}
+    className={classNames({}, "btn-outline", className)}
+  />
 );
 
 interface ButtonFloatingActionProps extends Props {
@@ -45,7 +53,10 @@ export const ButtonFloatingAction = ({
   label,
   ...restProps
 }: ButtonFloatingActionProps) => (
-  <ButtonBase {...restProps} className={classNames({}, "btn-floating-action", className)}>
+  <ButtonBase
+    {...restProps}
+    className={classNames({}, "btn-floating-action", className)}
+  >
     <Icon />
     <div className="btn-floating-action--label">{label}</div>
   </ButtonBase>

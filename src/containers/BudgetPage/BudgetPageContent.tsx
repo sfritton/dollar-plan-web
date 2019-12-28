@@ -3,7 +3,7 @@ import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
-import { ButtonFloatingAction} from "../../components/Button";
+import { ButtonFloatingAction } from "../../components/Button";
 import IconAdd from "../../icons/IconAdd";
 import Drawer from "../../components/Drawer";
 
@@ -22,15 +22,31 @@ function BudgetPageContent(props: Props) {
       <section>
         <h2>Income</h2>
         {budget.incomeIds.map(id => (
-          <Group groupId={id} key={id} noTitle={budget.incomeIds.length === 1}/>
+          <Group
+            groupId={id}
+            key={id}
+            noTitle={budget.incomeIds.length === 1}
+          />
         ))}
       </section>
       <section>
         <h2>Expenses</h2>
-        {budget.expenseIds.map(id => <Group groupId={id} key={id} />)}
+        {budget.expenseIds.map(id => (
+          <Group groupId={id} key={id} />
+        ))}
       </section>
-      <ButtonFloatingAction Icon={IconAdd} label="Add transactions" onClick={() => setIsOpen(true)} />
-      <Drawer title="Add transactions" isOpen={isOpen} onClose={() => setIsOpen(false)}>Wow, look at this!</Drawer>
+      <ButtonFloatingAction
+        Icon={IconAdd}
+        label="Add transactions"
+        onClick={() => setIsOpen(true)}
+      />
+      <Drawer
+        title="Add transactions"
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+      >
+        Wow, look at this!
+      </Drawer>
     </div>
   );
 }

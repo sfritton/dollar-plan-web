@@ -17,4 +17,4 @@ export const makeGetActualAmount = (id: number) => (state: AppState) => {
     (sum, transaction) => sum + (transaction ? transaction.amount : 0),
     0
   );
-}
+};

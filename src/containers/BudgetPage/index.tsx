@@ -11,16 +11,16 @@ import BudgetPageContent from "./BudgetPageContent";
 
 function BudgetPage() {
   const { budgetId } = useParams();
-  const getBudget = useMemo(() => makeGetBudget(budgetId || ''), [budgetId])
+  const getBudget = useMemo(() => makeGetBudget(budgetId || ""), [budgetId]);
 
   const budget = useSelector(getBudget);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (!budget || budget.status === Status.INIT) {
-      dispatch(fetchBudget(budgetId || ''))
+      dispatch(fetchBudget(budgetId || ""));
     }
-  }, [budget, dispatch, budgetId])
+  }, [budget, dispatch, budgetId]);
 
   if (!budgetId) return null; // TODO: better error state
 

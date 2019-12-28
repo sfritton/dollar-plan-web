@@ -21,14 +21,14 @@ const getDaysLeftMessage = (budget: BudgetWithMetadata) => {
 };
 
 const formatBalance = (balance?: number) => {
-  if (typeof balance === 'undefined') return '';
+  if (typeof balance === "undefined") return "";
 
   if (balance < 0) {
     return "Balance: -$" + getDollarString(balance * -1);
   }
 
   return "Balance: $" + getDollarString(balance);
-}
+};
 
 interface Props {
   budget?: BudgetWithMetadata;
@@ -38,7 +38,9 @@ function SubHeader(props: Props) {
   const { budget } = props;
   const { budgetId } = useParams();
 
-  const getActualBalance = useMemo(() => makeGetActualBalance(budgetId || ''), [budgetId])
+  const getActualBalance = useMemo(() => makeGetActualBalance(budgetId || ""), [
+    budgetId
+  ]);
   const balance = useSelector(getActualBalance);
 
   const unbalanced = false;

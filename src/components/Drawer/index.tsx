@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback, useRef } from 'react';
-import classNames from '../../util/classNames';
+import React, { useEffect, useRef } from "react";
+import classNames from "../../util/classNames";
 import "./drawer.css";
-import Layout from '../Layout';
-import IconClose from '../../icons/IconClose';
+import Layout from "../Layout";
+import IconClose from "../../icons/IconClose";
 
 function useOnClickOutside<T extends HTMLElement>(handleClick: AnyFunction) {
   const ref = useRef<T>(null);
@@ -12,7 +12,7 @@ function useOnClickOutside<T extends HTMLElement>(handleClick: AnyFunction) {
     if (ref.current && !ref.current.contains(event.target)) {
       handleClick(event);
     }
-  };
+  }
 
   useEffect(() => {
     // Bind the event listener
@@ -36,8 +36,16 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose, title }) => {
   const drawerRef = useOnClickOutside<HTMLDivElement>(onClose);
 
   return (
-    <div className={classNames({'drawer--background--open': isOpen }, 'drawer--background')}>
-      <Layout.Grid innerRef={drawerRef} className={classNames({'drawer--open': isOpen }, 'drawer')}>
+    <div
+      className={classNames(
+        { "drawer--background--open": isOpen },
+        "drawer--background"
+      )}
+    >
+      <Layout.Grid
+        innerRef={drawerRef}
+        className={classNames({ "drawer--open": isOpen }, "drawer")}
+      >
         <Layout.Header className="drawer--header">
           {title && <h2>{title}</h2>}
           <IconClose size={32} className="header--icon" />
@@ -45,7 +53,7 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose, title }) => {
         <Layout.Content className="drawer--content">{children}</Layout.Content>
       </Layout.Grid>
     </div>
-  )
-}
+  );
+};
 
 export default Drawer;

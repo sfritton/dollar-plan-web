@@ -1,5 +1,5 @@
 import { AppState } from "../types";
-import { makeGetActualAmount as makeGetCategoryActualAmount } from '../categories/selectors';
+import { makeGetActualAmount as makeGetCategoryActualAmount } from "../categories/selectors";
 
 export const makeGetGroup = (id: number) => (state: AppState) =>
   state.groups[id];
@@ -13,4 +13,4 @@ export const makeGetActualAmount = (id: number) => (state: AppState) => {
     (sum, categoryId) => sum + makeGetCategoryActualAmount(categoryId)(state),
     0
   );
-}
+};
