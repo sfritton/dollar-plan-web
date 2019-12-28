@@ -4,9 +4,9 @@ import { makeGetBudget } from "../../state/budgets/selectors";
 import { getMonthName } from "../../util/date";
 import SubHeader from "./SubHeader";
 import "./header.css";
-import IconCalendar from "../../icons/IconCalendar";
 import IconAdjust from "../../icons/IconAdjust";
 import { ButtonWithIcon } from "../../components/Button";
+import BudgetDrawer from "./BudgetDrawer";
 
 interface Props {
   budgetId: string;
@@ -23,12 +23,7 @@ function Header(props: Props) {
       <div className="header">
         {budget && (
           <>
-            <ButtonWithIcon
-              Icon={IconCalendar}
-              label="Switch budget"
-              onClick={() => {}}
-              className="header--left-btn"
-            />
+            <BudgetDrawer budgetId={budgetId} />
             <h1 className="header--title">
               {getMonthName(budget.month)} {budget.year}
             </h1>

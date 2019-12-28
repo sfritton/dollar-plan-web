@@ -31,9 +31,16 @@ interface Props {
   isOpen: boolean;
   onClose: AnyFunction;
   title?: string;
+  side?: "left" | "right";
 }
 
-const Drawer: React.FC<Props> = ({ children, isOpen, onClose, title }) => {
+const Drawer: React.FC<Props> = ({
+  children,
+  isOpen,
+  onClose,
+  title,
+  side = "right"
+}) => {
   const drawerRef = useOnClickOutside<HTMLDivElement>(onClose);
 
   return (
@@ -45,7 +52,10 @@ const Drawer: React.FC<Props> = ({ children, isOpen, onClose, title }) => {
     >
       <Layout.Grid
         innerRef={drawerRef}
-        className={classNames({ "drawer--open": isOpen }, "drawer")}
+        className={classNames(
+          { "drawer--open": isOpen, "drawer--left": side === "left" },
+          "drawer"
+        )}
       >
         <Layout.Header className="drawer--header">
           {title && <h2>{title}</h2>}
