@@ -32,6 +32,7 @@ interface Props {
   onClose: AnyFunction;
   title?: string;
   side?: "left" | "right";
+  Footer?: React.ComponentType;
 }
 
 const Drawer: React.FC<Props> = ({
@@ -39,7 +40,8 @@ const Drawer: React.FC<Props> = ({
   isOpen,
   onClose,
   title,
-  side = "right"
+  side = "right",
+  Footer
 }) => {
   const drawerRef = useOnClickOutside<HTMLDivElement>(onClose);
 
@@ -62,6 +64,11 @@ const Drawer: React.FC<Props> = ({
           <ButtonWithIcon Icon={IconClose} label="Cancel" onClick={onClose} />
         </Layout.Header>
         <Layout.Content className="drawer--content">{children}</Layout.Content>
+        {Footer && (
+          <Layout.Footer>
+            <Footer />
+          </Layout.Footer>
+        )}
       </Layout.Grid>
     </div>
   );

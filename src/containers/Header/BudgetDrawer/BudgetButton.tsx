@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { makeGetBudget } from "../../../state/budgets/selectors";
-import { LinkOutline } from "../../../components/Button/Link";
+import { LinkSecondary } from "../../../components/Button/Link";
 import { getMonthName } from "../../../util/date";
 
 interface Props {
@@ -19,13 +19,13 @@ export default function BudgetButton(props: Props) {
 
   return (
     <li>
-      <LinkOutline
+      <LinkSecondary
         to={`/budget/${id}`}
         className="budget-drawer--button"
         onClick={onClick}
       >
         {getMonthName(budget.month)} {budget.year} {isCurrent && "(current)"}
-      </LinkOutline>
+      </LinkSecondary>
     </li>
   );
 }

@@ -25,10 +25,17 @@ const Content: React.FC<Props> = ({ children, className, innerRef }) => (
   </div>
 );
 
+const Footer: React.FC<Props> = ({ children, className, innerRef }) => (
+  <div ref={innerRef} className={classNames({}, "layout--footer", className)}>
+    {children}
+  </div>
+);
+
 const Layout = {
   Grid,
   Header,
-  Content
+  Content,
+  Footer
 };
 
 export default Layout;

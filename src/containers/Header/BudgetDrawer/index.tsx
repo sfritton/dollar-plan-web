@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getStatus,
-  selectBudgets,
-  getBudgetIds
-} from "../../../state/budgets/selectors";
+import { getStatus, getBudgetIds } from "../../../state/budgets/selectors";
 import IconCalendar from "../../../icons/IconCalendar";
 import { ButtonWithIcon } from "../../../components/Button";
 import Drawer from "../../../components/Drawer";
@@ -12,6 +8,7 @@ import fetchBudgets from "../../../state/budgets/fetchBudgets";
 import { Status } from "../../../state/types";
 import "./budget-drawer.css";
 import BudgetButton from "./BudgetButton";
+import Footer from "./Footer";
 
 interface Props {
   budgetId: string;
@@ -46,6 +43,7 @@ function BudgetDrawer(props: Props) {
         onClose={() => setIsOpen(false)}
         side="left"
         title="Choose a budget"
+        Footer={Footer}
       >
         <ul className="budget-drawer">
           {budgetIds.map(id => (

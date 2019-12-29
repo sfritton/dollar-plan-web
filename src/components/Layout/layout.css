@@ -1,10 +1,11 @@
 .layout--grid {
   display: grid;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto 1fr auto;
 
   grid-template-areas:
     "header"
-    "content";
+    "content"
+    "footer";
 
   max-height: 100vh;
 }
