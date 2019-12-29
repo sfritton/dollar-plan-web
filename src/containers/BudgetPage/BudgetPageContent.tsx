@@ -3,7 +3,7 @@ import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
-import TransactionDrawer from "../TransactionsDrawer";
+import TransactionDrawer from "./TransactionsDrawer";
 
 interface Props {
   budget?: BudgetWithMetadata;
