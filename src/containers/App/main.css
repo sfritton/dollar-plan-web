@@ -22,10 +22,16 @@ h3 {
 }
 
 h2 {
-  margin-bottom: 5px;
+  margin-bottom: var(--space-x1);
   display: inline-block;
 }
 
 section {
-  margin-top: 20px;
+  margin-top: var(--space-x4);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

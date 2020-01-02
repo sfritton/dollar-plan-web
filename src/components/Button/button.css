@@ -95,8 +95,10 @@
 
 .btn-floating-action .btn-floating-action--label {
   max-width: 0;
+  opacity: 0;
   overflow: hidden;
-  transition: max-width var(--anim-duration-long) ease;
+  transition: max-width var(--anim-duration-long) ease,
+    opacity var(--anim-duration-long) ease;
   white-space: nowrap;
 }
 
@@ -104,6 +106,7 @@
 .btn-floating-action:active .btn-floating-action--label,
 .btn-floating-action:hover .btn-floating-action--label {
   max-width: 140px;
+  opacity: 1;
 }
 
 .btn:focus {

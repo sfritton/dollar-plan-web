@@ -16,6 +16,12 @@ export const getHasBudgets = (state: AppState) =>
 export const makeGetBudget = (budgetId: number | string) => (state: AppState) =>
   state.budgets.idMap[budgetId];
 
+export const makeSelectBudgetMonth = (budgetId: number | string) =>
+  createSelector(makeGetBudget(budgetId), budget => {
+    if (!budget) return undefined;
+    return budget.month;
+  });
+
 export const selectBudgets = createSelector(
   getBudgetIds,
   (state: AppState) => state.budgets.idMap,

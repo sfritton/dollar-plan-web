@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { useDispatch } from "react-redux";
+import uiSlice from "../../state/ui/slice";
+import { ButtonFloatingAction } from "../../components/Button";
+import IconAdd from "../../icons/IconAdd";
 import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
@@ -11,6 +15,13 @@ interface Props {
 
 function BudgetPageContent(props: Props) {
   const { budget } = props;
+
+  const dispatch = useDispatch();
+
+  const openDrawer = useCallback(
+    () => dispatch(uiSlice.actions.openTransactionDrawer({})),
+    [dispatch]
+  );
 
   if (!budget || budget.status !== Status.SUCCESS) return null;
 
@@ -32,6 +43,11 @@ function BudgetPageContent(props: Props) {
           <Group groupId={id} key={id} />
         ))}
       </section>
+      <ButtonFloatingAction
+        Icon={IconAdd}
+        label="Add transactions"
+        onClick={openDrawer}
+      />
       <TransactionDrawer />
     </div>
   );

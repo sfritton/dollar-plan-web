@@ -1,0 +1,14 @@
+.transaction {
+  margin: var(--space-x3) 0;
+}
+
+.transaction--details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.transaction--date {
+  margin-bottom: var(--space-x2);
+  font-size: 14px;
+  color: var(--color-primary-lighter);
+}

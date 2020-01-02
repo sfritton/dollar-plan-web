@@ -4,28 +4,34 @@ import "./card.css";
 
 interface Props {
   fullWidth?: boolean;
+  className?: string;
 }
 
 const Card: React.FC<Props> = props => {
-  const { children, fullWidth } = props;
+  const { children, fullWidth, className } = props;
 
-  const className = classNames({ "card--full-width": fullWidth }, "card");
+  const classList = classNames(
+    { "card--full-width": fullWidth },
+    "card",
+    className
+  );
 
-  return <div className={className}>{children}</div>;
+  return <div className={classList}>{children}</div>;
 };
 
 export const CardClickable: React.FC<Props & {
   onClick: AnyFunction<void>;
 }> = props => {
-  const { children, fullWidth, onClick } = props;
+  const { children, fullWidth, onClick, className } = props;
 
-  const className = classNames(
+  const classList = classNames(
     { "card--full-width": fullWidth },
-    "card card--btn"
+    "card card--btn",
+    className
   );
 
   return (
-    <a href="#" className={className} onClick={onClick}>
+    <a href="#" className={classList} onClick={onClick}>
       {children}
     </a>
   );

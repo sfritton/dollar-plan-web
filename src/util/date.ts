@@ -28,6 +28,12 @@ export function getMonthName(month: number) {
   return months[month - 1];
 }
 
+export function getMonthNameShort(month: number) {
+  const name = getMonthName(month);
+
+  return name.substring(0, 3);
+}
+
 export const getFirstDayOfMonth = ({ month, year }: SimpleDate) =>
   new Date(year, month - 1);
 
