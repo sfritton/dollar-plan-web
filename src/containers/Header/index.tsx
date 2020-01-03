@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { makeGetBudget } from "../../state/budgets/selectors";
 import { getMonthName } from "../../util/date";
 import SubHeader from "./SubHeader";
@@ -11,6 +11,7 @@ import uiSlice from "../../state/ui/slice";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import IconClose from "../../icons/IconClose";
 import IconSave from "../../icons/IconSave";
+import { useAction } from "../../state/hooks";
 
 interface Props {
   budgetId: string;
@@ -20,9 +21,9 @@ function Header(props: Props) {
   const { budgetId } = props;
   const getBudget = useMemo(() => makeGetBudget(budgetId), [budgetId]);
 
-  const dispatch = useDispatch();
   const budget = useSelector(getBudget);
   const isAdjustingBudget = useSelector(getIsAdjustingBudget);
+  const setIsAdjustingBudget = useAction(uiSlice.actions.setIsAdjustingBudget);
 
   return (
     <>
@@ -34,7 +35,7 @@ function Header(props: Props) {
                 className="header--left-btn"
                 Icon={IconClose}
                 label="Cancel"
-                onClick={() => {}}
+                onClick={() => setIsAdjustingBudget(false)}
               />
             ) : (
               <BudgetDrawer budgetId={budgetId} />
@@ -46,15 +47,13 @@ function Header(props: Props) {
               <ButtonWithIcon
                 Icon={IconSave}
                 label="Save changes"
-                onClick={() => {}}
+                onClick={() => setIsAdjustingBudget(false)}
               />
             ) : (
               <ButtonWithIcon
                 Icon={IconAdjust}
                 label="Adjust budget"
-                onClick={() =>
-                  dispatch(uiSlice.actions.setIsAdjustingBudget(true))
-                }
+                onClick={() => setIsAdjustingBudget(true)}
               />
             )}
           </>

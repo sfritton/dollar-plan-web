@@ -1,24 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { Status } from "../../state/types";
 import { getStatus, selectBudgets } from "../../state/budgets/selectors";
-import fetchBudgets from "../../state/budgets/fetchBudgets";
+import fetchBudgetsAction from "../../state/budgets/fetchBudgets";
 import "./welcome-page.css";
 import { ButtonPrimary } from "../../components/Button";
 import BudgetPicker from "./BudgetPicker";
 import { LinkOutline } from "../../components/Button/Link";
+import { useAction } from "../../state/hooks";
 
 function WelcomePage() {
   const [isChoosingBudget, setIsChoosingBudget] = useState(false);
   const status = useSelector(getStatus);
   const budgets = useSelector(selectBudgets);
-  const dispatch = useDispatch();
+
+  const fetchBudgets = useAction(fetchBudgetsAction);
 
   useEffect(() => {
     if (status === Status.INIT) {
-      dispatch(fetchBudgets());
+      fetchBudgets();
     }
-  }, [status, dispatch]);
+  }, [status, fetchBudgets]);
 
   const hasBudgets = budgets.length > 0;
 

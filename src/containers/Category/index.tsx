@@ -3,12 +3,13 @@ import {
   makeGetCategory,
   makeGetActualAmount
 } from "../../state/categories/selectors";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import Card, { CardClickable } from "../../components/Card";
 import CategoryHeading from "./CategoryHeading";
 import CategoryBalance from "./CategoryBalance";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import uiSlice from "../../state/ui/slice";
+import { useAction } from "../../state/hooks";
 
 interface Props {
   categoryId: number;
@@ -17,7 +18,6 @@ interface Props {
 
 function Category(props: Props) {
   const { categoryId, isIncome = false } = props;
-  const dispatch = useDispatch();
   const getCategory = useMemo(() => makeGetCategory(categoryId), [categoryId]);
   const getActualAmount = useMemo(() => makeGetActualAmount(categoryId), [
     categoryId
@@ -28,12 +28,13 @@ function Category(props: Props) {
   const actualAmount = useSelector(getActualAmount);
 
   const Tag = isAdjustingBudget ? Card : CardClickable;
+
+  const openTransactionDrawer = useAction(
+    uiSlice.actions.openTransactionDrawer
+  );
   const handleClick = useCallback(
-    () =>
-      dispatch(
-        uiSlice.actions.openTransactionDrawer({ id: categoryId, isIncome })
-      ),
-    [dispatch, categoryId, isIncome]
+    () => openTransactionDrawer({ id: categoryId, isIncome }),
+    [openTransactionDrawer, categoryId, isIncome]
   );
 
   if (!category) return null;

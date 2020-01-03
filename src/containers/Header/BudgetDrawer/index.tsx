@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getStatus, getBudgetIds } from "../../../state/budgets/selectors";
 import IconCalendar from "../../../icons/IconCalendar";
 import { ButtonWithIcon } from "../../../components/Button";
 import Drawer from "../../../components/Drawer";
-import fetchBudgets from "../../../state/budgets/fetchBudgets";
+import fetchBudgetsAction from "../../../state/budgets/fetchBudgets";
 import { Status } from "../../../state/types";
 import "./budget-drawer.css";
 import BudgetButton from "./BudgetButton";
 import Footer from "./Footer";
+import { useAction } from "../../../state/hooks";
 
 interface Props {
   budgetId: string;
@@ -22,13 +23,13 @@ function BudgetDrawer(props: Props) {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const dispatch = useDispatch();
+  const fetchBudgets = useAction(fetchBudgetsAction);
 
   useEffect(() => {
     if (status === Status.INIT) {
-      dispatch(fetchBudgets());
+      fetchBudgets();
     }
-  }, [status, dispatch]);
+  }, [status, fetchBudgets]);
 
   return (
     <>

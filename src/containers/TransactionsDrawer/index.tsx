@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import {
   getIsTransactionDrawerOpen,
   getIsTransactionDrawerIncome,
@@ -15,6 +15,7 @@ import {
 } from "../../state/categories/selectors";
 import Footer from "./Footer";
 import "./transaction-drawer.css";
+import { useAction } from "../../state/hooks";
 
 function TransactionDrawer() {
   const isOpen = useSelector(getIsTransactionDrawerOpen);
@@ -23,12 +24,7 @@ function TransactionDrawer() {
   const category = useSelector(makeGetCategory(categoryId || 0));
   const actualAmount = useSelector(makeGetActualAmount(categoryId || 0));
 
-  const dispatch = useDispatch();
-
-  const closeDrawer = useCallback(
-    () => dispatch(uiSlice.actions.closeTransactionDrawer()),
-    [dispatch]
-  );
+  const closeDrawer = useAction(uiSlice.actions.closeTransactionDrawer);
 
   const { title, transactionIds } = category || {};
 
