@@ -1,7 +1,7 @@
 import React from "react";
 import Input from "../../components/Input";
 import { useSelector } from "react-redux";
-import { getIsEditing } from "../../state/ui/selectors";
+import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import "./group.css";
 
 interface Props {
@@ -11,11 +11,11 @@ interface Props {
 function GroupHeading(props: Props) {
   const { title } = props;
   const updateTitle = (a: string) => {}; // TODO: useDispatch
-  const isEditing = useSelector(getIsEditing);
+  const isAdjustingBudget = useSelector(getIsAdjustingBudget);
 
   return (
     <div className="group--title">
-      {isEditing ? (
+      {isAdjustingBudget ? (
         <Input
           className="group--title-input"
           value={title}

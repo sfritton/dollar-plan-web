@@ -43,7 +43,13 @@ const Drawer: React.FC<Props> = ({
   side = "right",
   Footer
 }) => {
-  const drawerRef = useOnClickOutside<HTMLDivElement>(onClose);
+  function handleClickOutside() {
+    if (!isOpen) return;
+
+    onClose();
+  }
+
+  const drawerRef = useOnClickOutside<HTMLDivElement>(handleClickOutside);
 
   return (
     <div

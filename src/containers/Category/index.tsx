@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Card, { CardClickable } from "../../components/Card";
 import CategoryHeading from "./CategoryHeading";
 import CategoryBalance from "./CategoryBalance";
-import { getIsEditing } from "../../state/ui/selectors";
+import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import uiSlice from "../../state/ui/slice";
 
 interface Props {
@@ -23,11 +23,11 @@ function Category(props: Props) {
     categoryId
   ]);
 
-  const isEditing = useSelector(getIsEditing);
+  const isAdjustingBudget = useSelector(getIsAdjustingBudget);
   const category = useSelector(getCategory);
   const actualAmount = useSelector(getActualAmount);
 
-  const Tag = isEditing ? Card : CardClickable;
+  const Tag = isAdjustingBudget ? Card : CardClickable;
   const handleClick = useCallback(
     () =>
       dispatch(

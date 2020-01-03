@@ -12,7 +12,6 @@
 }
 
 .header--title {
-  font-size: 24px;
   flex-grow: 1;
 }
 
@@ -26,6 +25,6 @@
 }
 
 .header--subheader--unbalanced {
-  background: var(--color-danger-dark);
-  color: var(--color-danger-dark-text);
+  background: var(--color-danger-light);
+  color: var(--color-danger-light-text);
 }

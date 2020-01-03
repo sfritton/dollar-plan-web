@@ -1,7 +1,7 @@
 import { createSelector } from "@reduxjs/toolkit";
 import { AppState, Status } from "../types";
 import { BudgetWithMetadata } from "./slice";
-import { makeGetActualAmount } from "../groups/selectors";
+import { makeGetActualAmount, makeGetPlannedAmount } from "../groups/selectors";
 
 export const getStatus = (state: AppState) => state.budgets.status;
 
@@ -51,4 +51,31 @@ export const makeGetActualBalance = (budgetId: number | string) => (
   );
 
   return totalIncome - totalExpenses;
+};
+
+export const makeGetPlannedBalance = (budgetId: number | string) => (
+  state: AppState
+) => {
+  const budget = makeGetBudget(budgetId)(state);
+
+  if (!budget || budget.status !== Status.SUCCESS) return undefined;
+
+  const totalIncome = budget.incomeIds.reduce(
+    (sum, id) => sum + makeGetPlannedAmount(id)(state),
+    0
+  );
+  const totalExpenses = budget.expenseIds.reduce(
+    (sum, id) => sum + makeGetPlannedAmount(id)(state),
+    0
+  );
+
+  return totalIncome - totalExpenses;
+};
+
+export const makeGetIsBalanced = (budgetId: number | string) => (
+  state: AppState
+) => {
+  const balance = makeGetPlannedBalance(budgetId)(state);
+
+  return balance === 0;
 };

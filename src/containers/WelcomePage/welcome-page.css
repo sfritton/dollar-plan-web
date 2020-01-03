@@ -23,7 +23,7 @@
 .welcome--title {
   margin-top: var(--space-x6);
   margin-bottom: var(--space-x6);
-  font-size: calc(var(--space-x1) * 14);
+  font-size: 56px;
   animation: up var(--anim-duration-long) ease;
 }
 

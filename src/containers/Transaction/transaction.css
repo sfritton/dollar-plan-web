@@ -9,6 +9,6 @@
 
 .transaction--date {
   margin-bottom: var(--space-x2);
-  font-size: 14px;
+  font-size: var(--text-sm);
   color: var(--color-primary-lighter);
 }

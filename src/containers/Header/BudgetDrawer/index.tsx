@@ -49,6 +49,7 @@ function BudgetDrawer(props: Props) {
           {budgetIds.map(id => (
             <BudgetButton
               id={id}
+              key={id}
               isCurrent={String(id) === budgetId}
               onClick={() => setIsOpen(false)}
             />

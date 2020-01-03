@@ -21,6 +21,15 @@ h3 {
   margin: 0;
 }
 
+h1,
+h2 {
+  font-size: var(--text-xl);
+}
+
+h3 {
+  font-size: var(--text-lg);
+}
+
 h2 {
   margin-bottom: var(--space-x1);
   display: inline-block;

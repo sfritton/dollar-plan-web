@@ -11,7 +11,7 @@
 
 .category-card--balance {
   display: flex;
-  font-size: 14px;
+  font-size: var(--text-sm);
   align-items: center;
 }
 
@@ -21,5 +21,5 @@
 
 .category-card--notes {
   margin-top: var(--space-x2);
-  font-size: 14px;
+  font-size: var(--text-sm);
 }

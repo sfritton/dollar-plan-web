@@ -7,12 +7,14 @@ interface TransactionDrawerState {
 }
 
 interface UiState {
-  isEditing: boolean;
+  isAdjustingBudget: boolean;
+  isEditingTransactions: boolean;
   transactionDrawer: TransactionDrawerState;
 }
 
 const initialState: UiState = {
-  isEditing: false,
+  isAdjustingBudget: false,
+  isEditingTransactions: false,
   transactionDrawer: { isOpen: false }
 };
 export const name = "ui" as const;
@@ -21,9 +23,13 @@ const uiSlice = createSlice({
   name,
   initialState,
   reducers: {
-    setEditing: (state, action: PayloadAction<boolean>) => ({
+    setIsAdjustingBudget: (state, action: PayloadAction<boolean>) => ({
       ...state,
-      isEditing: action.payload
+      isAdjustingBudget: action.payload
+    }),
+    setIsEditingTransactions: (state, action: PayloadAction<boolean>) => ({
+      ...state,
+      isEditingTransactions: action.payload
     }),
     openTransactionDrawer: (
       state,

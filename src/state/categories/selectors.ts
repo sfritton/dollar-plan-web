@@ -18,3 +18,11 @@ export const makeGetActualAmount = (id: number) => (state: AppState) => {
     0
   );
 };
+
+export const makeGetPlannedAmount = (id: number) => (state: AppState) => {
+  const category = makeGetCategory(id)(state);
+
+  if (!category) return 0;
+
+  return category.planned_amount;
+};

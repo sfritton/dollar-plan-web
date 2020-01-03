@@ -6,7 +6,7 @@
   border: none;
   padding: var(--space-x2) var(--space-x3);
   border-radius: var(--space-x1);
-  font-size: 16px;
+  font-size: var(--text-md);
   transition: transform var(--anim-duration-long) ease;
 }
 
@@ -61,6 +61,7 @@
   border-radius: 50%;
 }
 
+.btn-with-icon:focus,
 .btn-with-icon:hover {
   background: rgba(0, 0, 0, 0.125);
 }
@@ -116,5 +117,5 @@
 
 .btn-small {
   padding: var(--space-x1) var(--space-x2);
-  font-size: 14px;
+  font-size: var(--text-sm);
 }

@@ -4,7 +4,7 @@
   border: none;
   border-bottom: 1px solid var(--color-primary-light);
   margin-bottom: 1px;
-  font-size: 16px;
+  font-size: var(--text-md);
 }
 
 .input::placeholder {
