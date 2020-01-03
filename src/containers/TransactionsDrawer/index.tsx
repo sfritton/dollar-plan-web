@@ -51,7 +51,7 @@ function TransactionDrawer() {
           )}
           <ul className="transaction-drawer--transactions">
             {transactionIds &&
-              transactionIds.map(id => <Transaction id={id} />)}
+              transactionIds.map(id => <Transaction id={id} key={id} />)}
           </ul>
         </>
       )}

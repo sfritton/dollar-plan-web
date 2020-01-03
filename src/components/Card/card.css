@@ -1,17 +1,9 @@
 .card {
+  display: block;
   background: var(--color-primary-dark);
   color: var(--color-primary-dark-text);
-  margin: calc(var(--space-x3) / 2);
   padding: var(--space-x3);
   border-radius: var(--space-x1);
-  width: 100%;
-}
-
-@media (min-width: 668px) {
-  .card {
-    width: calc(50% - var(--space-x3));
-    flex-shrink: 0;
-  }
 }
 
 .card--btn {
@@ -27,18 +19,11 @@
   outline: none;
 }
 
-.card--btn:focus > div:first-child > div:first-child {
+.card--btn:focus {
   text-decoration: underline;
 }
 
 .card-btn:active {
   box-shadow: inset 0px 3px 10px var(--color-shadow);
   background: var(--color-primary-dark);
-}
-
-.card--full-width {
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }

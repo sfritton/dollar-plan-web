@@ -1,11 +1,11 @@
 .category-card--heading {
   display: flex;
+  justify-content: space-between;
   margin-bottom: var(--space-x2);
   font-weight: bold;
 }
 
 .category-card--title {
-  flex-grow: 1;
   margin-right: var(--space-x3);
 }
 

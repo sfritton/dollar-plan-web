@@ -2,18 +2,19 @@
   display: block;
 }
 
-.budget-drawer > li + li {
-  border-top: 1px solid var(--color-primary-light);
-}
-
 .budget-drawer--button {
-  display: block;
-  padding: var(--space-x3);
-  border-radius: 0;
+  margin: var(--space-x3) 0;
 }
 
-.budget-drawer--button:hover {
-  background: var(--color-primary-dark-hover);
+.budget-drawer--button--current-label {
+  background: var(--color-secondary);
+  color: var(--color-secondary-text);
+  padding: var(--space-x1) var(--space-x2);
+  font-size: 8px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  float: right;
 }
 
 .budget-drawer--footer {
