@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import GroupHeading from "./GroupHeading";
 import "./group.css";
 import Category from "../Category";
+import { getIsAdjustingBudget } from "../../state/ui/selectors";
+import { CardClickable } from "../../components/Card";
 
 interface Props {
   groupId: number;
@@ -15,6 +17,7 @@ function Group(props: Props) {
   const getGroup = useMemo(() => makeGetGroup(groupId), [groupId]);
 
   const group = useSelector(getGroup);
+  const isAdjustingBudget = useSelector(getIsAdjustingBudget);
 
   if (!group) return null;
 
@@ -25,6 +28,14 @@ function Group(props: Props) {
         {group.categoryIds.map(id => (
           <Category categoryId={id} isIncome={group.is_income} key={id} />
         ))}
+        {isAdjustingBudget && (
+          <CardClickable
+            className="group--add-category-button"
+            onClick={() => {}}
+          >
+            Add a category
+          </CardClickable>
+        )}
       </div>
     </div>
   );

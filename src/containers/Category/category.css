@@ -1,12 +1,27 @@
 .category-card--heading {
   display: flex;
-  justify-content: space-between;
   margin-bottom: var(--space-x2);
   font-weight: bold;
+  min-height: 21px;
 }
 
 .category-card--title {
-  margin-right: var(--space-x3);
+  flex-grow: 1;
+  margin-right: var(--space-x4);
+}
+
+.category-card--title--input,
+.category-card--amount--input {
+  font-weight: bold;
+}
+
+.category-card--title--input {
+  width: 100%;
+}
+
+.category-card--amount--input {
+  max-width: 100px;
+  text-align: right;
 }
 
 .category-card--balance {
@@ -22,4 +37,10 @@
 .category-card--notes {
   margin-top: var(--space-x2);
   font-size: var(--text-sm);
+  min-height: 20px;
+}
+
+.category-card--notes input {
+  font-size: var(--text-sm);
+  width: 100%;
 }

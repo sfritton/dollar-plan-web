@@ -5,8 +5,6 @@
 .group--title {
   margin: var(--space-x2) 0;
   min-height: 25px;
-  display: flex;
-  align-items: flex-end;
 }
 
 .group--title-input {
@@ -32,4 +30,10 @@
 
 .group--category-cards .card--btn:focus .category-card--title {
   text-decoration: underline;
+}
+
+.group--add-category-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
