@@ -1,4 +1,6 @@
 .budget-page {
   padding: var(--space-x3);
   padding-bottom: 56px;
+  margin: 0 auto;
+  max-width: calc(900px + var(--space-x3) * 2);
 }

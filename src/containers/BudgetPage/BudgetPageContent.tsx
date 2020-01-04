@@ -1,6 +1,6 @@
 import React from "react";
 import uiSlice from "../../state/ui/slice";
-import { ButtonFloatingAction } from "../../components/Button";
+import { ButtonFloatingAction, ButtonPrimary } from "../../components/Button";
 import IconAdd from "../../icons/IconAdd";
 import Group from "../Group";
 import "./budget-page.css";
@@ -34,12 +34,18 @@ function BudgetPageContent(props: Props) {
             noTitle={budget.incomeIds.length === 1}
           />
         ))}
+        {isAdjustingBudget && (
+          <ButtonPrimary onClick={() => {}}>Add an income group</ButtonPrimary>
+        )}
       </section>
       <section>
         <h2>Expenses</h2>
         {budget.expenseIds.map(id => (
           <Group groupId={id} key={id} />
         ))}
+        {isAdjustingBudget && (
+          <ButtonPrimary onClick={() => {}}>Add an expense group</ButtonPrimary>
+        )}
       </section>
       {!isAdjustingBudget && (
         <ButtonFloatingAction
