@@ -23,7 +23,7 @@ function Group(props: Props) {
 
   return (
     <div className="group">
-      {!noTitle && <GroupHeading title={group.title} />}
+      {!noTitle && <GroupHeading title={group.title} id={groupId} />}
       <div className="group--category-cards">
         {group.categoryIds.map(id => (
           <Category categoryId={id} isIncome={group.is_income} key={id} />

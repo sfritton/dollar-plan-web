@@ -9,7 +9,18 @@ export const name = "groups" as const;
 const groupsSlice = createSlice({
   name,
   initialState,
-  reducers: {},
+  reducers: {
+    updateGroupTitle: (
+      state,
+      action: PayloadAction<{ id: number; title: string }>
+    ) => {
+      const group = state[action.payload.id];
+
+      if (!group) return;
+
+      group.title = action.payload.title;
+    }
+  },
   extraReducers: {
     [budgetsSlice.actions.addBudgetSuccess.toString()]: (
       state,

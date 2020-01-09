@@ -21,5 +21,15 @@ export function getCentString(num: number) {
   }
 }
 
-export const getCentNumber = (dollarString: string) =>
-  Math.floor(Number(dollarString.replace(/\./, "")));
+const dollarRegex = /\d\.\d/;
+
+export const getCentNumber = (dollarString: string) => {
+  if (dollarRegex.test(dollarString)) {
+    return Math.floor(Number(dollarString.replace(/\./, "")));
+  }
+
+  return Math.floor(Number(dollarString) * 100);
+};
+
+export const isValidAmount = (amountString: string) =>
+  /^[0-9]+$/.test(amountString);

@@ -40,13 +40,13 @@ function Category(props: Props) {
 
   return (
     <Tag onClick={handleClick}>
-      <CategoryHeading title={title} amount={planned_amount} />
+      <CategoryHeading id={categoryId} title={title} amount={planned_amount} />
       <CategoryBalance
         plannedAmount={planned_amount}
         actualAmount={actualAmount}
         isIncome={isIncome}
       />
-      <CategoryNotes notes={notes} />
+      <CategoryNotes id={categoryId} notes={notes} />
     </Tag>
   );
 }

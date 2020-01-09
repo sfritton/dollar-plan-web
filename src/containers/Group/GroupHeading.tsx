@@ -3,14 +3,17 @@ import Input from "../../components/Input";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import "./group.css";
+import { useAction } from "../../state/hooks";
+import groupsSlice from "../../state/groups/slice";
 
 interface Props {
   title: string;
+  id: number;
 }
 
 function GroupHeading(props: Props) {
-  const { title } = props;
-  const updateTitle = (a: string) => {}; // TODO: useDispatch
+  const { title, id } = props;
+  const updateTitle = useAction(groupsSlice.actions.updateGroupTitle);
   const isAdjustingBudget = useSelector(getIsAdjustingBudget);
 
   return (
@@ -20,7 +23,7 @@ function GroupHeading(props: Props) {
           className="group--title-input"
           value={title}
           placeholder="Group name"
-          onChange={e => updateTitle(e.target.value)}
+          onChange={e => updateTitle({ id, title: e.target.value })}
         />
       ) : (
         <h3>{title}</h3>
