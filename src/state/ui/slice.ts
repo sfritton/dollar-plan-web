@@ -1,21 +1,22 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface TransactionDrawerState {
+interface CategoryDrawerState {
   isOpen: boolean;
+  isEditingTransactions: boolean;
   id?: number;
   isIncome?: boolean;
 }
 
 interface UiState {
   isAdjustingBudget: boolean;
-  isEditingTransactions: boolean;
-  transactionDrawer: TransactionDrawerState;
+  isTransactionDrawerOpen: boolean;
+  categoryDrawer: CategoryDrawerState;
 }
 
 const initialState: UiState = {
   isAdjustingBudget: false,
-  isEditingTransactions: false,
-  transactionDrawer: { isOpen: false }
+  isTransactionDrawerOpen: false,
+  categoryDrawer: { isOpen: false, isEditingTransactions: false }
 };
 export const name = "ui" as const;
 
@@ -27,22 +28,33 @@ const uiSlice = createSlice({
       ...state,
       isAdjustingBudget: action.payload
     }),
-    setIsEditingTransactions: (state, action: PayloadAction<boolean>) => ({
-      ...state,
-      isEditingTransactions: action.payload
-    }),
-    openTransactionDrawer: (
+    setIsEditingTransactions: (state, action: PayloadAction<boolean>) => {
+      state.categoryDrawer.isEditingTransactions = action.payload;
+    },
+    openCategoryDrawer: (
       state,
-      action: PayloadAction<Omit<TransactionDrawerState, "isOpen">>
+      action: PayloadAction<
+        Omit<CategoryDrawerState, "isOpen" | "isEditingTransactions">
+      >
     ) => ({
       ...state,
-      transactionDrawer: { ...action.payload, isOpen: true }
+      categoryDrawer: {
+        ...action.payload,
+        isOpen: true,
+        isEditingTransactions: false
+      }
     }),
-
+    closeCategoryDrawer: state => ({
+      ...state,
+      categoryDrawer: { isOpen: false, isEditingTransactions: false }
+    }),
+    openTransactionDrawer: state => ({
+      ...state,
+      isTransactionDrawerOpen: true
+    }),
     closeTransactionDrawer: state => ({
       ...state,
-      isEditingTransactions: false,
-      transactionDrawer: { isOpen: false }
+      isTransactionDrawerOpen: false
     })
   }
 });

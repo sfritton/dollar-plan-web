@@ -4,13 +4,16 @@ export const getIsAdjustingBudget = (state: AppState) =>
   state.ui.isAdjustingBudget;
 
 export const getIsEditingTransactions = (state: AppState) =>
-  state.ui.isEditingTransactions;
+  state.ui.categoryDrawer.isEditingTransactions;
+
+export const getIsCategoryDrawerOpen = (state: AppState) =>
+  state.ui.categoryDrawer.isOpen;
+
+export const getIsCategoryDrawerIncome = (state: AppState) =>
+  state.ui.categoryDrawer.isIncome;
+
+export const getCategoryDrawerId = (state: AppState) =>
+  state.ui.categoryDrawer.id;
 
 export const getIsTransactionDrawerOpen = (state: AppState) =>
-  state.ui.transactionDrawer.isOpen;
-
-export const getIsTransactionDrawerIncome = (state: AppState) =>
-  state.ui.transactionDrawer.isIncome;
-
-export const getTransactionDrawerId = (state: AppState) =>
-  state.ui.transactionDrawer.id;
+  state.ui.isTransactionDrawerOpen;

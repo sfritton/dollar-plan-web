@@ -26,12 +26,10 @@ function Category(props: Props) {
 
   const Tag = isAdjustingBudget ? Card : CardClickable;
 
-  const openTransactionDrawer = useAction(
-    uiSlice.actions.openTransactionDrawer
-  );
+  const openCategoryDrawer = useAction(uiSlice.actions.openCategoryDrawer);
   const handleClick = useCallback(
-    () => openTransactionDrawer({ id: categoryId, isIncome }),
-    [openTransactionDrawer, categoryId, isIncome]
+    () => openCategoryDrawer({ id: categoryId, isIncome }),
+    [openCategoryDrawer, categoryId, isIncome]
   );
 
   if (!category) return null;

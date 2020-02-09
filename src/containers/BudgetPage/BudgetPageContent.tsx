@@ -6,7 +6,7 @@ import Group from "../Group";
 import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
-import TransactionDrawer from "../TransactionsDrawer";
+import CategoryDrawer from "../CategoryDrawer";
 import { useAction } from "../../state/hooks";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
@@ -51,10 +51,10 @@ function BudgetPageContent(props: Props) {
         <ButtonFloatingAction
           Icon={IconAdd}
           label="Add transactions"
-          onClick={() => openDrawer({})}
+          onClick={openDrawer}
         />
       )}
-      <TransactionDrawer />
+      <CategoryDrawer />
     </div>
   );
 }
