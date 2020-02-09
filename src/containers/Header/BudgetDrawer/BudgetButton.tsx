@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { makeGetBudget } from "../../../state/budgets/selectors";
 import { getMonthName } from "../../../util/date";
-import { CardLink } from "../../../components/Card";
 
 interface Props {
   id: number;
@@ -19,7 +19,7 @@ export default function BudgetButton(props: Props) {
 
   return (
     <li>
-      <CardLink
+      <Link
         to={`/budget/${id}`}
         className="budget-drawer--button"
         onClick={onClick}
@@ -28,7 +28,7 @@ export default function BudgetButton(props: Props) {
         {isCurrent && (
           <span className="budget-drawer--button--current-label">current</span>
         )}
-      </CardLink>
+      </Link>
     </li>
   );
 }

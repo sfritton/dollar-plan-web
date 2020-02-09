@@ -18,7 +18,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background: var(--color-primary);
+  background: var(--color-primary-dark);
   width: 100vw;
   transform: translateX(350px);
   transition: transform var(--anim-duration-default);

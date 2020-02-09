@@ -41,6 +41,7 @@ const uiSlice = createSlice({
 
     closeTransactionDrawer: state => ({
       ...state,
+      isEditingTransactions: false,
       transactionDrawer: { isOpen: false }
     })
   }

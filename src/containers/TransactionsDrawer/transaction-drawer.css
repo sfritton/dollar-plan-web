@@ -1,3 +1,8 @@
 .transaction-drawer--transactions {
-  padding: var(--space-x3) 0;
+  padding-bottom: var(--space-x3);
+}
+
+.transaction-drawer--heading {
+  margin-top: var(--space-x5);
+  margin-bottom: var(--space-x2);
 }

@@ -43,8 +43,12 @@ function TransactionDrawer() {
             isIncome={isIncome}
           />
           {category.notes && (
-            <div className="category-card--notes">{category.notes}</div>
+            <>
+              <h3 className="transaction-drawer--heading">Notes</h3>
+              <div className="category-card--notes">{category.notes}</div>
+            </>
           )}
+          <h3 className="transaction-drawer--heading">Transactions</h3>
           <ul className="transaction-drawer--transactions">
             {transactionIds &&
               transactionIds.map(id => <Transaction id={id} key={id} />)}

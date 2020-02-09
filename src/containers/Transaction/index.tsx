@@ -5,7 +5,6 @@ import { makeSelectBudgetMonth } from "../../state/budgets/selectors";
 import { getMonthNameShort } from "../../util/date";
 import TransactionDetails from "./TransactionDetails";
 import "./transaction.css";
-import Card from "../../components/Card";
 
 interface Props {
   id: number;
@@ -26,13 +25,13 @@ export default function Transaction(props: Props) {
 
   return (
     <li>
-      <Card className="transaction">
+      <div className="transaction">
         <div className="transaction--date">{date}</div>
         <TransactionDetails
           description={transaction.description}
           amount={transaction.amount}
         />
-      </Card>
+      </div>
     </li>
   );
 }

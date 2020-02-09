@@ -1,5 +1,6 @@
 .transaction {
-  margin: var(--space-x3) 0;
+  padding: var(--space-x3) 0;
+  border-bottom: 1px solid var(--color-primary-light);
 }
 
 .transaction--details {

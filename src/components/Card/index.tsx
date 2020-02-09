@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import classNames from "../../util/classNames";
 import "./card.css";
 
@@ -26,21 +25,6 @@ export const CardClickable: React.FC<Props & {
     <a href="#" className={classList} onClick={onClick}>
       {children}
     </a>
-  );
-};
-
-export const CardLink: React.FC<Props & {
-  to: string;
-  onClick: AnyFunction<void>;
-}> = props => {
-  const { children, to, className, onClick } = props;
-
-  const classList = classNames({}, "card card--btn", className);
-
-  return (
-    <Link to={to} className={classList} onClick={onClick}>
-      {children}
-    </Link>
   );
 };
 
