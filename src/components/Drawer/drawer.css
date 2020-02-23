@@ -40,8 +40,7 @@
   transform: translateX(0);
 }
 
-.drawer--header,
-.drawer--content {
+.drawer--header {
   padding: var(--space-x3);
 }
 

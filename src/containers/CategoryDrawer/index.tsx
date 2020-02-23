@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { getDollarString } from "../../util/currency";
 import {
   getIsCategoryDrawerOpen,
   getIsCategoryDrawerIncome,
@@ -37,18 +38,26 @@ function CategoryDrawer() {
     >
       {category && (
         <>
-          <CategoryBalance
-            plannedAmount={category.planned_amount}
-            actualAmount={actualAmount}
-            isIncome={isIncome}
-          />
-          {category.notes && (
-            <>
-              <h3 className="category-drawer--heading">Notes</h3>
-              <div className="category-card--notes">{category.notes}</div>
-            </>
-          )}
-          <h3 className="category-drawer--heading">Transactions</h3>
+          <div className="category-drawer--header">
+            <div className="category-drawer--amount-block">
+              <h3 className="category-drawer--heading">Planned amount</h3>
+              <div className="category-drawer--amount">
+                ${getDollarString(category.planned_amount)}
+              </div>
+            </div>
+            <CategoryBalance
+              plannedAmount={category.planned_amount}
+              actualAmount={actualAmount}
+              isIncome={isIncome}
+            />
+            {category.notes && (
+              <>
+                <h3 className="category-drawer--heading">Notes</h3>
+                <div className="category-card--notes">{category.notes}</div>
+              </>
+            )}
+            <h3 className="category-drawer--heading">Transactions</h3>
+          </div>
           <ul className="category-drawer--transactions">
             {transactionIds &&
               transactionIds.map(id => <Transaction id={id} key={id} />)}

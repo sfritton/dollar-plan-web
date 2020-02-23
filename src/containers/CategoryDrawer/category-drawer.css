@@ -2,7 +2,23 @@
   padding-bottom: var(--space-x3);
 }
 
+.category-drawer--amount,
 .category-drawer--heading {
   margin-top: var(--space-x5);
   margin-bottom: var(--space-x2);
+}
+
+.category-drawer--amount {
+  font-weight: bold;
+  font-size: var(--text-lg);
+}
+
+.category-drawer--amount-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-drawer--header {
+  padding: 0 var(--space-x3);
+  border-bottom: 1px solid var(--color-primary-light);
 }
