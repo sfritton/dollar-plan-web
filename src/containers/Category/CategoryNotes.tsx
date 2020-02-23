@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
-import Input from "../../components/Input";
+import { InputText } from "../../components/Input";
 import { useAction } from "../../state/hooks";
 import categoriesSlice from "../../state/categories/slice";
 
@@ -19,10 +19,11 @@ function CategoryNotes(props: Props) {
   if (isAdjustingBudget)
     return (
       <div className="category-card--notes">
-        <Input
+        <InputText
+          className="category-card--notes--input"
           value={notes}
           onChange={e => updateNotes({ id, notes: e.target.value })}
-          placeholder="Notes"
+          label="Notes"
         />
       </div>
     );

@@ -10,18 +10,12 @@
   margin-right: var(--space-x4);
 }
 
-.category-card--title--input,
-.category-card--amount--input {
-  font-weight: bold;
-}
-
 .category-card--title--input {
   width: 100%;
 }
 
 .category-card--amount--input {
   max-width: 100px;
-  text-align: right;
 }
 
 .category-card--balance {
@@ -40,7 +34,10 @@
   min-height: 20px;
 }
 
-.category-card--notes input {
-  font-size: var(--text-sm);
+.category-card--notes--input {
   width: 100%;
+}
+
+.category-card--notes--input input {
+  font-size: var(--text-sm);
 }

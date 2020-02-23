@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../components/Input";
+import { InputText } from "../../components/Input";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import "./group.css";
@@ -19,10 +19,10 @@ function GroupHeading(props: Props) {
   return (
     <div className="group--title">
       {isAdjustingBudget ? (
-        <Input
+        <InputText
           className="group--title-input"
           value={title}
-          placeholder="Group name"
+          label="Group name"
           onChange={e => updateTitle({ id, title: e.target.value })}
         />
       ) : (

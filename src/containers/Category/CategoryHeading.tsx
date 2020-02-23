@@ -1,7 +1,7 @@
 import React from "react";
 import "./category.css";
 import { getDollarString } from "../../util/currency";
-import Input from "../../components/Input";
+import { InputText, InputDollar } from "../../components/Input";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
 import categoriesSlice from "../../state/categories/slice";
@@ -23,9 +23,9 @@ const CategoryHeading = ({ title, amount, id }: Props) => {
     <div className="category-card--heading">
       <div className="category-card--title">
         {isAdjustingBudget ? (
-          <Input
+          <InputText
             className="category-card--title--input"
-            placeholder="Category name"
+            label="Category name"
             value={title}
             onChange={e => updateTitle({ id, title: e.target.value })}
           />
@@ -35,7 +35,8 @@ const CategoryHeading = ({ title, amount, id }: Props) => {
       </div>
       <div>
         {isAdjustingBudget ? (
-          <Input
+          <InputDollar
+            label="Amount"
             className="category-card--amount--input"
             value={getDollarString(amount)}
             onChange={e => updateAmount({ id, amount: e.target.value })}

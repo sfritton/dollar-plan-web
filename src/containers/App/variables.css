@@ -45,6 +45,7 @@
   --space-x5: calc(var(--space-x1) * 5);
   --space-x6: calc(var(--space-x1) * 6);
 
+  --text-xs: 12px;
   --text-sm: 14px;
   --text-md: 16px;
   --text-lg: 18px;

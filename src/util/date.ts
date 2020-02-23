@@ -37,6 +37,12 @@ export function getMonthNameShort(month: number) {
 export const getFirstDayOfMonth = ({ month, year }: SimpleDate) =>
   new Date(year, month - 1);
 
+export const getLastDayOfMonth = (date: SimpleDate) => {
+  const nextMonth = getNextMonth(date);
+
+  return new Date(nextMonth.year, nextMonth.month - 1, 0);
+};
+
 // returns the number of days between two dates
 export const compareDates = (date1: Date, date2: Date) =>
   Math.floor((date2.getTime() - date1.getTime()) / ONE_DAY);
@@ -72,3 +78,35 @@ export function getDaysLeft(date: SimpleDate) {
 
   return compareToToday(nextMonthBeginning);
 }
+
+/**
+ * Returns the day in the budget month that is closest to target date.
+ * If target date is in the budget month, returns target date.
+ * If budget month is in the past, returns last day of budget month.
+ * If budget month is in the future, returns 1st day of budget month.
+ */
+export function getClosestToDate(date: SimpleDate, targetDate: Date) {
+  const targetMonth = targetDate.getMonth() + 1;
+  const targetYear = targetDate.getFullYear();
+
+  if (date.year > targetYear) {
+    return getFirstDayOfMonth(date);
+  }
+
+  if (date.year < targetYear) {
+    return getLastDayOfMonth(date);
+  }
+
+  if (date.month > targetMonth) {
+    return getFirstDayOfMonth(date);
+  }
+
+  if (date.month < targetMonth) {
+    return getLastDayOfMonth(date);
+  }
+
+  return targetDate;
+}
+
+export const getClosestToToday = (date: SimpleDate) =>
+  getClosestToDate(date, new Date());

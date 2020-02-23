@@ -1,0 +1,18 @@
+.transaction-drawer--input-card {
+  padding: var(--space-x4) var(--space-x3);
+  border-bottom: 1px solid var(--color-primary-light);
+}
+
+.transaction-drawer--input-card--row-1 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-x2);
+}
+
+.transaction-drawer--amount-input {
+  max-width: 100px;
+}
+
+.transaction-drawer--description-input {
+  width: 100%;
+}

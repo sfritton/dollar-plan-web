@@ -4,7 +4,7 @@ import { Status } from "../../state/types";
 import { selectBudgets, getStatus } from "../../state/budgets/selectors";
 import fetchBudgetsAction from "../../state/budgets/fetchBudgets";
 import { getMonthName } from "../../util/date";
-import Input from "../../components/Input";
+import { InputText } from "../../components/Input";
 import "./budget-picker.css";
 import { LinkOutline } from "../../components/Button/Link";
 import { useAction } from "../../state/hooks";
@@ -33,11 +33,11 @@ function BudgetPicker() {
   return (
     <>
       <h2 className="budget-picker--heading">Choose a budget</h2>
-      <Input
+      <InputText
         className="budget-picker--typeahead"
         value={searchTerm}
         onChange={e => setSearchTerm(e.target.value)}
-        placeholder="Filter"
+        label="Filter"
       />
       <div className="budget-picker--budgets-container">
         {budgets.reduce((acc: JSX.Element[], { id, month, year }) => {

@@ -7,6 +7,7 @@ import "./budget-page.css";
 import { BudgetWithMetadata } from "../../state/budgets/slice";
 import { Status } from "../../state/types";
 import CategoryDrawer from "../CategoryDrawer";
+import TransactionDrawer from "../TransactionDrawer";
 import { useAction } from "../../state/hooks";
 import { useSelector } from "react-redux";
 import { getIsAdjustingBudget } from "../../state/ui/selectors";
@@ -55,6 +56,7 @@ function BudgetPageContent(props: Props) {
         />
       )}
       <CategoryDrawer />
+      <TransactionDrawer />
     </div>
   );
 }
