@@ -9,15 +9,23 @@ import TransactionInput from "./TransactionInput";
 import "./transaction-drawer.css";
 import { ButtonSecondary } from "../../components/Button";
 
+const initialTransactions = [0];
+
 function TransactionDrawer() {
   const isOpen = useSelector(getIsTransactionDrawerOpen);
-  const closeDrawer = useAction(uiSlice.actions.closeTransactionDrawer);
-  const [transactions, setTransactions] = useState([0]);
+  const closeDrawerAction = useAction(uiSlice.actions.closeTransactionDrawer);
+  const [transactions, setTransactions] = useState(initialTransactions);
+
+  const closeDrawer = useCallback(() => {
+    closeDrawerAction();
+    setTransactions(initialTransactions);
+  }, [closeDrawerAction, setTransactions]);
+
   const addTransaction = useCallback(
     () =>
       setTransactions(prevTransactions => [
         ...prevTransactions,
-        prevTransactions[-1] + 1
+        prevTransactions[prevTransactions.length - 1] + 1
       ]),
     [setTransactions]
   );
@@ -40,7 +48,12 @@ function TransactionDrawer() {
       {transactions.map(transaction => (
         <TransactionInput key={transaction} />
       ))}
-      <ButtonSecondary onClick={addTransaction}>Add another</ButtonSecondary>
+      <ButtonSecondary
+        onClick={addTransaction}
+        className="transaction-drawer--add-another"
+      >
+        Add another
+      </ButtonSecondary>
     </Drawer>
   );
 }

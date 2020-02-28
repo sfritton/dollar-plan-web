@@ -8,6 +8,7 @@ import {
   getClosestToToday
 } from "../../util/date";
 import { Select, InputText, InputCent } from "../../components/Input";
+import CategorySelect from "./CategorySelect";
 
 const dates = [...new Array(31)].map((_, index) => index + 1);
 
@@ -25,7 +26,11 @@ const TransactionInput: React.FC = () => {
   return (
     <div className="transaction-drawer--input-card">
       <div className="transaction-drawer--input-card--row-1">
-        <Select label="Date" defaultValue={closestDate}>
+        <Select
+          label="Date"
+          defaultValue={closestDate}
+          className="transaction-drawer--date-input"
+        >
           {dates.slice(0, lastDay).map(date => (
             <option key={date} value={date}>
               {monthName} {date}
@@ -37,6 +42,7 @@ const TransactionInput: React.FC = () => {
           className="transaction-drawer--amount-input"
         />
       </div>
+      <CategorySelect />
       <InputText
         label="Description"
         className="transaction-drawer--description-input"
