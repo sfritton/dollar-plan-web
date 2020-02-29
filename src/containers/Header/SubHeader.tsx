@@ -69,7 +69,7 @@ function SubHeader(props: Props) {
   return (
     <div
       className={classNames(
-        { "header--subheader--unbalanced": !isBalanced },
+        { "header--subheader--unbalanced": isBalanced === false },
         "header--subheader"
       )}
     >

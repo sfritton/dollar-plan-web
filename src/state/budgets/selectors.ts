@@ -77,5 +77,7 @@ export const makeGetIsBalanced = (budgetId: number | string) => (
 ) => {
   const balance = makeGetPlannedBalance(budgetId)(state);
 
+  if (typeof balance === "undefined") return undefined;
+
   return balance === 0;
 };
