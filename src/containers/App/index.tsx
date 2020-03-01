@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./variables.css";
 import "./main.css";
 import WelcomePage from "../WelcomePage";
+import ChooseBudgetPage from "../ChooseBudgetPage";
 import NewBudgetPage from "../NewBudgetPage";
 import BudgetPage from "../BudgetPage";
 
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route path="/new-budget">
             <NewBudgetPage />
+          </Route>
+          <Route path="/choose-budget">
+            <ChooseBudgetPage />
           </Route>
           <Route path="/">
             <WelcomePage />

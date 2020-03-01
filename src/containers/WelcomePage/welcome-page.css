@@ -25,6 +25,10 @@
   animation: up var(--anim-duration-long) ease;
 }
 
+.welcome--title--no-animation {
+  animation: none;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

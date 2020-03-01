@@ -5,7 +5,6 @@ import { selectBudgets, getStatus } from "../../state/budgets/selectors";
 import fetchBudgetsAction from "../../state/budgets/fetchBudgets";
 import { getMonthName } from "../../util/date";
 import { InputText } from "../../components/Input";
-import "./budget-picker.css";
 import { LinkOutline } from "../../components/Button/Link";
 import { useAction } from "../../state/hooks";
 
