@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Helmet from "react-helmet";
 import Header from "../Header";
 import { Status } from "../../state/types";
 import fetchBudgetAction from "../../state/budgets/fetchBudget";
@@ -9,6 +10,7 @@ import "./budget-page.css";
 import Layout from "../../components/Layout";
 import BudgetPageContent from "./BudgetPageContent";
 import { useAction } from "../../state/hooks";
+import { getMonthName } from "../../util/date";
 
 function BudgetPage() {
   const { budgetId } = useParams();
@@ -26,14 +28,21 @@ function BudgetPage() {
   if (!budgetId) return null; // TODO: better error state
 
   return (
-    <Layout.Grid>
-      <Layout.Header>
-        <Header budgetId={budgetId} />
-      </Layout.Header>
-      <Layout.Content>
-        <BudgetPageContent budget={budget} />
-      </Layout.Content>
-    </Layout.Grid>
+    <>
+      {budget && budget.status === Status.SUCCESS && (
+        <Helmet>
+          <title>{`${getMonthName(budget.month)} ${budget.year}`}</title>
+        </Helmet>
+      )}
+      <Layout.Grid>
+        <Layout.Header>
+          <Header budgetId={budgetId} />
+        </Layout.Header>
+        <Layout.Content>
+          <BudgetPageContent budget={budget} />
+        </Layout.Content>
+      </Layout.Grid>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
+import Helmet from "react-helmet";
 import store from "../../state/store";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./variables.css";
@@ -11,24 +12,29 @@ import BudgetPage from "../BudgetPage";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <Switch>
-          <Route path="/budget/:budgetId">
-            <BudgetPage />
-          </Route>
-          <Route path="/new-budget">
-            <NewBudgetPage />
-          </Route>
-          <Route path="/choose-budget">
-            <ChooseBudgetPage />
-          </Route>
-          <Route path="/">
-            <WelcomePage />
-          </Route>
-        </Switch>
-      </Router>
-    </Provider>
+    <>
+      <Helmet>
+        <title>Dollar Plan</title>
+      </Helmet>
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/budget/:budgetId">
+              <BudgetPage />
+            </Route>
+            <Route path="/new-budget">
+              <NewBudgetPage />
+            </Route>
+            <Route path="/choose-budget">
+              <ChooseBudgetPage />
+            </Route>
+            <Route path="/">
+              <WelcomePage />
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
+    </>
   );
 }
 
